@@ -1,0 +1,45 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/brandtrack-openapi-original.yml + https://api.brandtrack.fm/.well-known/oauth-authorization-server
+docs: https://developers.brandtrack.ai/
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: default
+  type: apiKey
+  in: header
+  parameter: x-customer-api-key
+  description: >-
+    Primary REST auth. Include an x-customer-api-key header on every authenticated
+    request. Contact the Brandtrack team to obtain a key.
+  sources:
+  - openapi/brandtrack-openapi-original.yml
+- name: partner-key
+  type: apiKey
+  in: header
+  parameter: X-Partner-Key
+  description: Key used for the /partner/* endpoints (account registration, user token minting).
+  sources:
+  - https://developers.brandtrack.ai/
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.brandtrack.fm/oauth/authorize
+    tokenUrl: https://api.brandtrack.fm/oauth/token
+    revocationUrl: https://api.brandtrack.fm/oauth/revoke
+    pkce: S256
+    grant_types: [authorization_code, refresh_token]
+    scopes: [mcp]
+  description: >-
+    OAuth 2.0 authorization server discovered via RFC 8414 metadata at
+    api.brandtrack.fm (.well-known/oauth-authorization-server). PKCE S256 required,
+    single "mcp" scope — guards an MCP/agent access path. Not yet in the human docs.
+  sources:
+  - https://api.brandtrack.fm/.well-known/oauth-authorization-server
