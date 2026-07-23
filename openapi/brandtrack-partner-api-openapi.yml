@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Partner API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Partner
+  description: ''
+paths:
+  /partner/accounts/register:
+    post:
+      summary: Create account
+      operationId: createAccount
+      description: It creates a new account based on the provided data. Also, create a user and sends the default email.
+      parameters:
+      - in: header
+        name: X-Partner-Key
+        description: ''
+        example: abc123
+        schema:
+          type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  account_id: 1
+                  account_name: test account name
+                  user_id: 1
+                  url: https://my.brandtrack.fm/login/token/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh
+                properties:
+                  account_id:
+                    type: integer
+                    example: 1
+                  account_name:
+                    type: string
+                    example: test account name
+                  user_id:
+                    type: integer
+                    example: 1
+                  url:
+                    type: string
+                    example: https://my.brandtrack.fm/login/token/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh
+      tags:
+      - Partner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the account to create.
+                  example: VetShop
+                  nullable: false
+                country:
+                  type: string
+                  description: The country in ISO-2 format.
+                  example: US
+                  nullable: false
+                business_category_id:
+                  type: integer
+                  description: The business category id of the account.
+                  example: 1
+                  nullable: false
+                email:
+                  type: string
+                  description: The email of the account owner.
+                  example: john.doe@example.com
+                  nullable: false
+                firstname:
+                  type: string
+                  description: The firstname of the account owner.
+                  example: John
+                  nullable: true
+                lastname:
+                  type: string
+                  description: The lastname of the account owner.
+                  example: Doe
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: The phone number of the account owner.
+                  example: '1234567890'
+                  nullable: false
+              required:
+              - name
+              - country
+              - email
+      security: []
+  /partner/users/{id}/token:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the user.
+      example: 1
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: Creates a new token for requested user.
+      operationId: createsANewTokenForRequestedUser
+      description: It returns a new token for the user provided that lasts 1 hour and can be used only once.
+      parameters:
+      - in: header
+        name: X-Partner-Key
+        description: ''
+        example: abc123
+        schema:
+          type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user_id: 1482
+                    token: QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+                    created_at: '2025-02-07 10:27:21'
+                    expires_at: '2025-02-07 11:27:21'
+                    url: https://my.brandtrack.fm/login/token/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1482
+                      token:
+                        type: string
+                        example: QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+                      created_at:
+                        type: string
+                        example: '2025-02-07 10:27:21'
+                      expires_at:
+                        type: string
+                        example: '2025-02-07 11:27:21'
+                      url:
+                        type: string
+                        example: https://my.brandtrack.fm/login/token/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+      tags:
+      - Partner
+      security: []
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

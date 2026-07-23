@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Subscriptions API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Subscriptions
+  description: ''
+paths:
+  /v2/subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: listSubscriptions
+      description: Return a paginated list of subscriptions available for the authenticated user.
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses: {}
+      tags:
+      - Subscriptions
+  /v2/subscriptions/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the subscription.
+      example: 5392
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get a subscription by its ID
+      operationId: getASubscriptionByItsID
+      description: Return a single subscription by its ID, if available to the authenticated user.
+      parameters:
+      - in: query
+        name: using_account_id
+        description: Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.
+        example: 0
+        required: false
+        schema:
+          type: integer
+          description: Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.
+          example: 0
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Subscriptions
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

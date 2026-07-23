@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Roles API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Roles
+  description: ''
+paths:
+  /v2/roles:
+    get:
+      summary: List all roles
+      operationId: listAllRoles
+      description: ''
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses: {}
+      tags:
+      - Roles
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

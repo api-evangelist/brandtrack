@@ -1,0 +1,504 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Users API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Users
+  description: ''
+paths:
+  /v2/users:
+    get:
+      summary: List users
+      operationId: listUsers
+      description: Return a paginated list of users available for the authenticated user.
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses: {}
+      tags:
+      - Users
+    post:
+      summary: Invites a user to the platform
+      operationId: invitesAUserToThePlatform
+      description: It will send automatically an email to the provided email address with a unique link to setup the user's account.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 18782
+                    uuid: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                    email: john.doe@brandtrack.fm
+                    firstname: John
+                    lastname: Doe
+                    phone_number: '+9332312323'
+                    country: BE
+                    role: owner
+                    business_category_id: 62
+                    flags: []
+                    created_at: '2024-07-09T13:34:16+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18782
+                      uuid:
+                        type: string
+                        example: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      firstname:
+                        type: string
+                        example: John
+                      lastname:
+                        type: string
+                        example: Doe
+                      phone_number:
+                        type: string
+                        example: '+9332312323'
+                      country:
+                        type: string
+                        example: BE
+                      role:
+                        type: string
+                        example: owner
+                      business_category_id:
+                        type: integer
+                        example: 62
+                      flags:
+                        type: array
+                        example: []
+                      created_at:
+                        type: string
+                        example: '2024-07-09T13:34:16+00:00'
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: The account where this user will be created.
+                  example: 19120
+                  nullable: true
+                email:
+                  type: string
+                  description: The email to be registered.
+                  example: testexample@example.com
+                  nullable: false
+                firstname:
+                  type: string
+                  description: User's firstname.
+                  example: John
+                  nullable: false
+                lastname:
+                  type: string
+                  description: User's lastname.
+                  example: Doe
+                  nullable: false
+                role_id:
+                  type: integer
+                  description: The role to assign to the new user.
+                  example: 74
+                  nullable: false
+              required:
+              - account_id
+              - email
+              - firstname
+              - lastname
+              - role_id
+  /v2/users/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the user.
+      example: 18782
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get a user by its ID
+      operationId: getAUserByItsID
+      description: Return a single user by its ID, if available to the authenticated user.
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Users
+  /v2/users/{id}/token:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the user.
+      example: 18782
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: Create temporary auth token
+      operationId: createTemporaryAuthToken
+      description: 'Create a one-time token that allows to access to the account by opening the link provided.
+
+        It lasts only 1 hour and any attempting to use this token after 1 hour will result in a 401 Unauthorized response.'
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user_id: 123456
+                    token: kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                    created_at: '2024-08-01T16:03:50Z'
+                    expires_at: '2024-08-01T17:03:50Z'
+                    url: https://api.brandtrack.fm/login/token/kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                    requested_by: 7303
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123456
+                      token:
+                        type: string
+                        example: kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                      created_at:
+                        type: string
+                        example: '2024-08-01T16:03:50Z'
+                      expires_at:
+                        type: string
+                        example: '2024-08-01T17:03:50Z'
+                      url:
+                        type: string
+                        example: https://api.brandtrack.fm/login/token/kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                      requested_by:
+                        type: integer
+                        example: 7303
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Users
+  /v2/users/{id}/suspension:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the user.
+      example: 13
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: Handle user suspension status
+      operationId: handleUserSuspensionStatus
+      description: By providing the bool value, you can set or unset the suspension status for a user.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 18782
+                  uuid: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                  email: john.doe@brandtrack.fm
+                  firstname: John
+                  lastname: Doe
+                  phone_number: '+9332312323'
+                  country: BE
+                  role: owner
+                  business_category_id: 62
+                  flags: []
+                  suspended: false
+                  created_at: '2024-07-09T13:34:16+00:00'
+                properties:
+                  id:
+                    type: integer
+                    example: 18782
+                  uuid:
+                    type: string
+                    example: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                  email:
+                    type: string
+                    example: john.doe@brandtrack.fm
+                  firstname:
+                    type: string
+                    example: John
+                  lastname:
+                    type: string
+                    example: Doe
+                  phone_number:
+                    type: string
+                    example: '+9332312323'
+                  country:
+                    type: string
+                    example: BE
+                  role:
+                    type: string
+                    example: owner
+                  business_category_id:
+                    type: integer
+                    example: 62
+                  flags:
+                    type: array
+                    example: []
+                  suspended:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2024-07-09T13:34:16+00:00'
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+        409:
+          description: Suspension issue
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: You can't set a suspension to an already suspended account.
+                  status_code: 409
+                properties:
+                  message:
+                    type: string
+                    example: You can't set a suspension to an already suspended account.
+                  status_code:
+                    type: integer
+                    example: 409
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                suspended:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+              - suspended
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

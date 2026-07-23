@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Groups API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Groups
+  description: ''
+paths:
+  /v2/groups:
+    get:
+      summary: List groups
+      operationId: listGroups
+      description: Return a paginated list of groups available for the authenticated user.
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses: {}
+      tags:
+      - Groups
+    post:
+      summary: Create a new group
+      operationId: createANewGroup
+      description: Create a new group using the provided data.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 17351
+                    account_id: 19120
+                    music_profile_id: null
+                    name: Music
+                    analytics:
+                      data:
+                        players: 0
+                        announcements: 1
+                        mixes: 0
+                        radios: 0
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 17351
+                      account_id:
+                        type: integer
+                        example: 19120
+                      music_profile_id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: Music
+                      analytics:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              players:
+                                type: integer
+                                example: 0
+                              announcements:
+                                type: integer
+                                example: 1
+                              mixes:
+                                type: integer
+                                example: 0
+                              radios:
+                                type: integer
+                                example: 0
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: This action is unauthorized.
+                  status_code: 403
+                properties:
+                  message:
+                    type: string
+                    example: This action is unauthorized.
+                  status_code:
+                    type: integer
+                    example: 403
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: The <code>id</code> of an existing record in the accounts table.
+                  example: 5
+                  nullable: true
+                music_profile_id:
+                  type: integer
+                  description: The <code>id</code> of an existing record in the music_profiles table.
+                  example: 9
+                  nullable: true
+                name:
+                  type: string
+                  description: ''
+                  example: ratione
+                  nullable: false
+              required:
+              - name
+  /v2/groups/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the group.
+      example: 17351
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get a group by its ID
+      operationId: getAGroupByItsID
+      description: Return a single group by its ID, if available to the authenticated user.
+      parameters:
+      - in: query
+        name: include
+        description: 'Any relation to be included, separated by commas. You can use: announcements, mixes, account.'
+        example: announcements,mixes
+        required: false
+        schema:
+          type: string
+          description: 'Any relation to be included, separated by commas. You can use: announcements, mixes, account.'
+          example: announcements,mixes
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Groups
+    patch:
+      summary: Update a group
+      operationId: updateAGroup
+      description: Update a group with the data provided in the request.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 17351
+                    account_id: 19120
+                    music_profile_id: null
+                    name: Music
+                    analytics:
+                      data:
+                        players: 0
+                        announcements: 1
+                        mixes: 0
+                        radios: 0
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 17351
+                      account_id:
+                        type: integer
+                        example: 19120
+                      music_profile_id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: Music
+                      analytics:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              players:
+                                type: integer
+                                example: 0
+                              announcements:
+                                type: integer
+                                example: 1
+                              mixes:
+                                type: integer
+                                example: 0
+                              radios:
+                                type: integer
+                                example: 0
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: The <code>id</code> of an existing record in the accounts table.
+                  example: 5
+                  nullable: true
+                music_profile_id:
+                  type: integer
+                  description: The <code>id</code> of an existing record in the music_profiles table.
+                  example: 1
+                  nullable: true
+                name:
+                  type: string
+                  description: ''
+                  example: sed
+                  nullable: false
+              required:
+              - name
+    delete:
+      summary: Delete a group
+      operationId: deleteAGroup
+      description: Delete a group using the ID. Any zone related will lose the access to the playlists and announcements immediately.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        204:
+          description: Success
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Groups
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

@@ -1,0 +1,464 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Locations API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Locations
+  description: ''
+paths:
+  /v2/locations:
+    get:
+      summary: List locations
+      operationId: listLocations
+      description: Return a paginated list of groups available for the authenticated user.
+      parameters:
+      - in: query
+        name: page
+        description: The page requested. Default to 1.
+        example: 1
+        required: false
+        schema:
+          type: integer
+          description: The page requested. Default to 1.
+          example: 1
+          nullable: false
+      - in: query
+        name: per_page
+        description: The number of items per page. Default to 25.
+        example: 100
+        required: false
+        schema:
+          type: integer
+          description: The number of items per page. Default to 25.
+          example: 100
+          nullable: false
+      - in: query
+        name: order_by
+        description: The field to order the results by. Default to id.
+        example: id
+        required: false
+        schema:
+          type: string
+          description: The field to order the results by. Default to id.
+          example: id
+          nullable: false
+      - in: query
+        name: direction
+        description: The direction method to sort results. Default to asc.
+        example: desc
+        required: false
+        schema:
+          type: string
+          description: The direction method to sort results. Default to asc.
+          example: desc
+          nullable: false
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses: {}
+      tags:
+      - Locations
+    post:
+      summary: Create a location
+      operationId: createALocation
+      description: This endpoint is designed to by used by My Brandtrack users.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 26440
+                    account_id: 19120
+                    name: Downtown Bakery
+                    country: US
+                    address: 176 Berry St, Brooklyn
+                    phone_number: '11002929'
+                    email: john.doe@brandtrack.fm
+                    manager: John Doe
+                    created_at: '2024-07-31T14:38:34+00:00'
+                    timezone: America/Los_Angeles
+                    type: own
+                    city: New York
+                    zip_code: '11249'
+                    additional_information: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 26440
+                      account_id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: Downtown Bakery
+                      country:
+                        type: string
+                        example: US
+                      address:
+                        type: string
+                        example: 176 Berry St, Brooklyn
+                      phone_number:
+                        type: string
+                        example: '11002929'
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      manager:
+                        type: string
+                        example: John Doe
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:38:34+00:00'
+                      timezone:
+                        type: string
+                        example: America/Los_Angeles
+                      type:
+                        type: string
+                        example: own
+                      city:
+                        type: string
+                        example: New York
+                      zip_code:
+                        type: string
+                        example: '11249'
+                      additional_information:
+                        type: string
+                        example: null
+        403:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: This action is unauthorized.
+                  status_code: 403
+                properties:
+                  message:
+                    type: string
+                    example: This action is unauthorized.
+                  status_code:
+                    type: integer
+                    example: 403
+      tags:
+      - Locations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Must not be greater than 100 characters.
+                  example: ojpraplsvntmeldpdkmp
+                  nullable: false
+                country:
+                  type: string
+                  description: The <code>iso</code> of an existing record in the countries table. Must be 2 characters.
+                  example: cl
+                  nullable: false
+                city:
+                  type: string
+                  description: Must not be greater than 100 characters.
+                  example: qdddkgyxbjgquhfvasy
+                  nullable: false
+                address:
+                  type: string
+                  description: Must not be greater than 255 characters.
+                  example: hveyqazuvntjbbskxezycdto
+                  nullable: false
+                zip_code:
+                  type: string
+                  description: Must not be greater than 20 characters.
+                  example: jvxfuvlanyjkwggywkw
+                  nullable: false
+                phone_number:
+                  type: string
+                  description: Must not be greater than 40 characters.
+                  example: blfyghkjmrvkjofiajevi
+                  nullable: false
+                email:
+                  type: string
+                  description: Must be a valid email address. Must not be greater than 100 characters.
+                  example: lindsey52@example.com
+                  nullable: false
+                manager:
+                  type: string
+                  description: Must not be greater than 255 characters.
+                  example: sfkrcbygpvexfpx
+                  nullable: false
+                type:
+                  type: string
+                  description: ''
+                  example: franchise
+                  nullable: false
+                  enum:
+                  - own
+                  - franchise
+                additional_information:
+                  type: string
+                  description: Must not be greater than 1024 characters.
+                  example: aqlgoitxfc
+                  nullable: true
+              required:
+              - name
+              - country
+              - city
+              - address
+              - zip_code
+              - phone_number
+              - email
+              - manager
+              - type
+  /v2/locations/{id}:
+    parameters:
+    - in: path
+      name: id
+      description: The ID of the location.
+      example: 26440
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Return a location by its ID
+      operationId: returnALocationByItsID
+      description: Return a single location by its ID, if available to the authenticated user.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Locations
+    patch:
+      summary: Update a location
+      operationId: updateALocation
+      description: Only values provided in the request will be updated.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 26440
+                    account_id: 19120
+                    name: Downtown Bakery
+                    country: US
+                    address: 176 Berry St, Brooklyn
+                    phone_number: '11002929'
+                    email: john.doe@brandtrack.fm
+                    manager: John Doe
+                    created_at: '2024-07-31T14:38:34+00:00'
+                    timezone: America/Los_Angeles
+                    type: own
+                    city: New York
+                    zip_code: '11249'
+                    additional_information: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 26440
+                      account_id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: Downtown Bakery
+                      country:
+                        type: string
+                        example: US
+                      address:
+                        type: string
+                        example: 176 Berry St, Brooklyn
+                      phone_number:
+                        type: string
+                        example: '11002929'
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      manager:
+                        type: string
+                        example: John Doe
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:38:34+00:00'
+                      timezone:
+                        type: string
+                        example: America/Los_Angeles
+                      type:
+                        type: string
+                        example: own
+                      city:
+                        type: string
+                        example: New York
+                      zip_code:
+                        type: string
+                        example: '11249'
+                      additional_information:
+                        type: string
+                        example: null
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Locations
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Must not be greater than 100 characters.
+                  example: xsw
+                  nullable: false
+                country:
+                  type: string
+                  description: The <code>iso</code> of an existing record in the countries table. Must be 2 characters.
+                  example: ri
+                  nullable: false
+                city:
+                  type: string
+                  description: Must not be greater than 100 characters.
+                  example: fkvyexjhhenjgyxsfhy
+                  nullable: true
+                address:
+                  type: string
+                  description: Must not be greater than 255 characters.
+                  example: cndqkxrmxtzntfi
+                  nullable: true
+                zip_code:
+                  type: string
+                  description: Must not be greater than 20 characters.
+                  example: pmczqek
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: Must not be greater than 40 characters.
+                  example: jjofnzimjvjdmni
+                  nullable: true
+                email:
+                  type: string
+                  description: Must be a valid email address. Must not be greater than 100 characters.
+                  example: collins.joesph@example.com
+                  nullable: true
+                manager:
+                  type: string
+                  description: Must not be greater than 255 characters.
+                  example: pqbscnlbozwmfvhquiwfkly
+                  nullable: true
+                additional_information:
+                  type: string
+                  description: Must not be greater than 1024 characters.
+                  example: ktwxipkm
+                  nullable: true
+    delete:
+      summary: Delete a location
+      operationId: deleteALocation
+      description: Delete a location using the ID. Any location with at least 1 zone related to, won't be deleted.
+      parameters:
+      - in: header
+        name: x-customer-api-key
+        description: ''
+        example: '{YOUR_AUTH_KEY}'
+        schema:
+          type: string
+      responses:
+        204:
+          description: Success
+        404:
+          description: Wrong ID
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 404 Not Found
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: 404 Not Found
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+      - Locations
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.

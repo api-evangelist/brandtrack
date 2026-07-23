@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Brandtrack API Documentation Accounts Other API
+  description: This is the official documentation for the Brandtrack API.
+  version: 1.0.0
+servers:
+- url: api.brandtrack.fm
+security:
+- default: []
+tags:
+- name: Other
+  description: ''
+paths:
+  /business_categories:
+    get:
+      summary: List all business categories
+      operationId: listAllBusinessCategories
+      description: Return all business categories available in the system.
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                  - id: 1
+                    key: retail
+                    parent_id: null
+                    name: Retail
+                properties:
+                  data:
+                    type: array
+                    example:
+                    - id: 1
+                      key: retail
+                      parent_id: null
+                      name: Retail
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        key:
+                          type: string
+                          example: retail
+                        parent_id:
+                          type: string
+                          example: null
+                        name:
+                          type: string
+                          example: Retail
+      tags:
+      - Other
+      security: []
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: If are not sure about how to get your token feel free to contact our team.
