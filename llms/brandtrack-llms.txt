@@ -1,0 +1,35 @@
+# Brandtrack
+
+> Brandtrack is a licensed background-music and in-store audio platform for commercial spaces (retail, hospitality, food & beverage). It centralizes multi-location music management with smart scheduling, real-time playlist adaptation, brand guardrails, AI audio-ad creation, and audit-ready licensing. The Brandtrack API (v2) manages accounts, subscriptions, users, locations, zones, groups, and roles.
+
+## APIs
+
+- [Brandtrack API v2](https://developers.brandtrack.ai/): REST API over accounts, subscriptions, users, locations, zones, groups, roles. Base URL https://api.brandtrack.fm/v2. Auth via x-customer-api-key header (partner endpoints use X-Partner-Key).
+
+## Specs
+
+- [OpenAPI 3.0.3](https://developers.brandtrack.ai/openapi.yaml): 32 operations across 9 tags.
+- [Postman collection](https://developers.brandtrack.ai/collection.json)
+
+## Auth
+
+- API key: x-customer-api-key request header.
+- Partner key: X-Partner-Key for /partner endpoints.
+- OAuth 2.0 (undocumented, discovered via .well-known): authorization_code + PKCE S256, scope "mcp" — https://api.brandtrack.fm/.well-known/oauth-authorization-server
+
+## Conventions
+
+- Pagination: page, per_page, order_by, direction on list endpoints.
+- Errors: JSON envelope { message, status_code, errors? } (not RFC 9457).
+- Temporary user tokens valid 1 hour via POST /v2/users/{id}/token.
+- No idempotency keys, webhooks, or rate-limit headers documented.
+
+## Docs
+
+- [Developer Portal](https://developers.brandtrack.ai/)
+- [Help Center](https://help.brandtrack.fm/hc/en-us)
+- [Pricing](https://www.brandtrack.ai/pricing)
+- [Blog](https://www.brandtrack.ai/blog)
+- [Sign Up](https://new.my.brandtrack.ai/register)
+- [Terms](https://www.brandtrack.ai/terms-and-conditions)
+- [Privacy](https://www.brandtrack.ai/privacy-policy)

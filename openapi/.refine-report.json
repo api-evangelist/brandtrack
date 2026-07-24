@@ -1,0 +1,30 @@
+{
+  "provider": "brandtrack",
+  "sources": [
+    "brandtrack-accounts-api-openapi.yml",
+    "brandtrack-groups-api-openapi.yml",
+    "brandtrack-locations-api-openapi.yml",
+    "brandtrack-other-api-openapi.yml",
+    "brandtrack-partner-api-openapi.yml",
+    "brandtrack-roles-api-openapi.yml",
+    "brandtrack-subscriptions-api-openapi.yml",
+    "brandtrack-users-api-openapi.yml",
+    "brandtrack-zones-api-openapi.yml"
+  ],
+  "outputs": [
+    "brandtrack-accounts-api-openapi.yml",
+    "brandtrack-groups-api-openapi.yml",
+    "brandtrack-locations-api-openapi.yml",
+    "brandtrack-other-api-openapi.yml",
+    "brandtrack-partner-api-openapi.yml",
+    "brandtrack-roles-api-openapi.yml",
+    "brandtrack-subscriptions-api-openapi.yml",
+    "brandtrack-users-api-openapi.yml",
+    "brandtrack-zones-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

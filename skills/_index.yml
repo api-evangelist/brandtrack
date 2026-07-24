@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/brandtrack-openapi-original.yml
+skills:
+- file: brandtrack-onboard-account.md
+  name: Onboard a Brandtrack account (partner flow)
+  api: openapi/brandtrack-openapi-original.yml
+  operations: [createAccount, createsANewTokenForRequestedUser]
+- file: brandtrack-setup-location-zones.md
+  name: Set up a location and its playback zones
+  api: openapi/brandtrack-openapi-original.yml
+  operations: [createALocation, createAZone, updateAZoneSmartData, listZones]
+- file: brandtrack-manage-users.md
+  name: Invite and manage Brandtrack users
+  api: openapi/brandtrack-openapi-original.yml
+  operations: [invitesAUserToThePlatform, listUsers, createTemporaryAuthToken, handleUserSuspensionStatus]

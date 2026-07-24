@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/brandtrack-openapi-original.yml + https://api.brandtrack.fm/.well-known/oauth-protected-resource
+evidence: >-
+  api.brandtrack.fm publishes RFC 8414/9728 OAuth metadata declaring a single "mcp"
+  scope and an OAuth-guarded protected resource, strongly indicating an official MCP
+  access path. The MCP transport endpoint could not be confirmed publicly (probed
+  /mcp, /sse, /api/mcp, mcp.brandtrack.fm — none reachable), so the tool list below is
+  DERIVED from the REST OpenAPI operations, not verified against a live MCP server.
+server:
+  name: brandtrack
+  transport: http
+  url: null
+  oauth:
+    authorization_server: https://api.brandtrack.fm/.well-known/oauth-authorization-server
+    protected_resource: https://api.brandtrack.fm/.well-known/oauth-protected-resource
+    scope: mcp
+    pkce: S256
+tools:
+- name: list_accounts
+  description: List accounts available to the authenticated user.
+  source_operation: openapi/brandtrack-openapi-original.yml#listAccounts
+- name: get_account
+  description: Retrieve an account by ID.
+  source_operation: openapi/brandtrack-openapi-original.yml#getAnAccountByItsID
+- name: list_subscriptions
+  description: List subscriptions.
+  source_operation: openapi/brandtrack-openapi-original.yml#listSubscriptions
+- name: list_users
+  description: List platform users.
+  source_operation: openapi/brandtrack-openapi-original.yml#listUsers
+- name: invite_user
+  description: Invite a user to the platform.
+  source_operation: openapi/brandtrack-openapi-original.yml#invitesAUserToThePlatform
+- name: create_user_token
+  description: Mint a 1-hour temporary auth token for a user.
+  source_operation: openapi/brandtrack-openapi-original.yml#createTemporaryAuthToken
+- name: list_locations
+  description: List locations.
+  source_operation: openapi/brandtrack-openapi-original.yml#listLocations
+- name: create_location
+  description: Create a location.
+  source_operation: openapi/brandtrack-openapi-original.yml#createALocation
+- name: list_zones
+  description: List zones.
+  source_operation: openapi/brandtrack-openapi-original.yml#listZones
+- name: create_zone
+  description: Create a playback zone.
+  source_operation: openapi/brandtrack-openapi-original.yml#createAZone
+- name: update_zone_smart_data
+  description: Update a zone's smart (adaptive) data.
+  source_operation: openapi/brandtrack-openapi-original.yml#updateAZoneSmartData
+- name: list_groups
+  description: List groups.
+  source_operation: openapi/brandtrack-openapi-original.yml#listGroups
+- name: create_group
+  description: Create a group of zones/announcements/mixes.
+  source_operation: openapi/brandtrack-openapi-original.yml#createANewGroup
+- name: list_roles
+  description: List all roles.
+  source_operation: openapi/brandtrack-openapi-original.yml#listAllRoles
+- name: list_business_categories
+  description: List business categories (unauthenticated reference data).
+  source_operation: openapi/brandtrack-openapi-original.yml#listAllBusinessCategories
+- name: partner_register_account
+  description: Partner flow — create an account and its first user.
+  source_operation: openapi/brandtrack-openapi-original.yml#createAccount

@@ -1,7 +1,26 @@
 aid: brandtrack
 name: Brandtrack
-description: Brandtrack is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Brandtrack is a licensed background-music and in-store audio platform for commercial
+  spaces — retail, hospitality, and food & beverage. It centralizes multi-location music
+  management with smart scheduling, real-time playlist adaptation to signals like foot
+  traffic, weather, and time of day, brand guardrails, AI audio-ad creation, and
+  audit-ready licensing documentation. The Brandtrack v2 REST API manages accounts,
+  subscriptions, users, locations, zones, groups, and roles, authenticated with an
+  x-customer-api-key header, with a partner flow for provisioning customers.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/643faaa7da666b82bfd92bfd/6980cdfb5017b7621777a8eb_The%20right%20song%20at%20the%20right%20time%20(2).png
 url: https://raw.githubusercontent.com/api-evangelist/brandtrack/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +30,221 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Music
+- Background Music
+- Audio
+- Streaming
+- Retail
+- Hospitality
+- In-Store Experience
+- Media
+- Sound
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: brandtrack:brandtrack-accounts-api
+  name: Brandtrack Accounts API
+  description: The Accounts API from Brandtrack — 3 operation(s) for accounts.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-accounts-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-groups-api
+  name: Brandtrack Groups API
+  description: The Groups API from Brandtrack — 2 operation(s) for groups.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-groups-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-locations-api
+  name: Brandtrack Locations API
+  description: The Locations API from Brandtrack — 2 operation(s) for locations.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-locations-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-other-api
+  name: Brandtrack Other API
+  description: The Other API from Brandtrack — 1 operation(s) for other.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Other
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-other-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-partner-api
+  name: Brandtrack Partner API
+  description: The Partner API from Brandtrack — 2 operation(s) for partner.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Partner
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-partner-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-roles-api
+  name: Brandtrack Roles API
+  description: The Roles API from Brandtrack — 1 operation(s) for roles.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-roles-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-subscriptions-api
+  name: Brandtrack Subscriptions API
+  description: The Subscriptions API from Brandtrack — 2 operation(s) for subscriptions.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-subscriptions-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-users-api
+  name: Brandtrack Users API
+  description: The Users API from Brandtrack — 4 operation(s) for users.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-users-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
+- aid: brandtrack:brandtrack-zones-api
+  name: Brandtrack Zones API
+  description: The Zones API from Brandtrack — 3 operation(s) for zones.
+  humanURL: https://developers.brandtrack.ai/
+  baseURL: https://api.brandtrack.fm/v2/
+  tags:
+  - Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/brandtrack-zones-api-openapi.yml
+  - type: Postman
+    url: packages/brandtrack-postman-collection.json
+  - type: Documentation
+    url: https://developers.brandtrack.ai/
+  - type: APIReference
+    url: https://developers.brandtrack.ai/
 common:
+- type: DeveloperPortal
+  url: https://developers.brandtrack.ai/
+- type: Documentation
+  url: https://developers.brandtrack.ai/
+- type: APIReference
+  url: https://developers.brandtrack.ai/
+- type: Postman
+  url: packages/brandtrack-postman-collection.json
+- type: Authentication
+  url: authentication/brandtrack-authentication.yml
+- type: OAuthScopes
+  url: scopes/brandtrack-scopes.yml
+- type: MCPServer
+  url: mcp/brandtrack-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/brandtrack-agentic-access.yml
+- type: WellKnown
+  url: well-known/brandtrack-well-known.yml
+- type: Conventions
+  url: conventions/brandtrack-conventions.yml
+- type: ErrorCatalog
+  url: errors/brandtrack-problem-types.yml
+- type: Conformance
+  url: conformance/brandtrack-conformance.yml
+- type: Lifecycle
+  url: lifecycle/brandtrack-lifecycle.yml
+- type: DataModel
+  url: data-model/brandtrack-data-model.yml
+- type: DomainSecurity
+  url: security/brandtrack-domain-security.yml
+- type: LLMsTxt
+  url: llms/brandtrack-llms.txt
+- type: Support
+  url: https://help.brandtrack.fm/hc/en-us
+- type: Blog
+  url: https://www.brandtrack.ai/blog
+- type: Pricing
+  url: https://www.brandtrack.ai/pricing
+- type: SignUp
+  url: https://new.my.brandtrack.ai/register
+- type: Login
+  url: https://new.my.brandtrack.ai/login
+- type: TermsOfService
+  url: https://www.brandtrack.ai/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.brandtrack.ai/privacy-policy
 - type: Website
-  url: https://brandtrack.fm
+  url: https://www.brandtrack.ai
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

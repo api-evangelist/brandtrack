@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brandtrack-openapi-original.yml
+format: custom-json
+note: >-
+  Brandtrack does NOT use RFC 9457 application/problem+json. Errors are returned as a
+  flat JSON envelope with a human "message" and numeric "status_code"; 422 validation
+  errors add a per-field "errors" map. Derived from the OpenAPI 4xx response examples.
+envelope:
+  content_type: application/json
+  fields:
+    message: Human-readable error message.
+    status_code: HTTP status code echoed in the body.
+    errors: Field-keyed array of validation messages (422 only).
+problems:
+- status: 402
+  title: Plan limit reached
+  meaning: The account's subscription plan limit was reached (e.g. creating a zone beyond quota).
+  example: '{"message": "Plan limit reached", "status_code": 402}'
+  remediation: Upgrade the subscription or free capacity; some writes accept an acknowledgement flag.
+- status: 403
+  title: This action is unauthorized
+  meaning: The API key lacks permission for the target resource, or the resource ID is wrong.
+  example: '{"message": "This action is unauthorized.", "status_code": 403}'
+  remediation: Verify the x-customer-api-key and that the resource belongs to the caller.
+- status: 404
+  title: Not Found
+  meaning: The requested resource ID does not exist.
+  example: '{"message": "404 Not Found", "status_code": 404}'
+  remediation: Confirm the resource ID exists and is visible to the authenticated user.
+- status: 409
+  title: Conflict
+  meaning: Requested state transition conflicts with current state (e.g. suspending an already-suspended account).
+  example: '{"message": "You can''t set a suspension to an already suspended account.", "status_code": 409}'
+  remediation: Fetch the current state before issuing suspension/state-change requests.
+- status: 422
+  title: Unprocessable Content
+  meaning: Request payload failed validation; per-field messages returned in "errors".
+  example: '{"message": "422 Unprocessable Content", "errors": {"data.zones.0.id": ["The data.zones.0.id field is required."]}, "status_code": 422}'
+  remediation: Fix the fields listed in the "errors" map and resubmit.

@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brandtrack-openapi-original.yml + https://api.brandtrack.fm/.well-known/oauth-authorization-server
+standards:
+- id: oauth2
+  conforms: true
+  evidence: RFC 8414 authorization-server metadata published at api.brandtrack.fm with authorization_code + refresh_token grants and PKCE S256.
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256.
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with issuer/endpoints.
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: /.well-known/oauth-protected-resource returns 200 declaring resource + mcp scope.
+- id: apikey-auth
+  conforms: true
+  evidence: OpenAPI securityScheme type apiKey (x-customer-api-key header).
+- id: pagination
+  conforms: true
+  evidence: page/per_page/order_by/direction params on all list endpoints.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a flat {message,status_code} JSON envelope, not application/problem+json.
+- id: openidconnect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key mechanism documented.
+- id: webhooks
+  conforms: false
+  evidence: No webhook or event surface documented.

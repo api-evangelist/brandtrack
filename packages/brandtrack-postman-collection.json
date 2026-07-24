@@ -1,0 +1,1650 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "api.brandtrack.fm"
+        }
+    ],
+    "info": {
+        "name": "Brandtrack API Documentation",
+        "_postman_id": "fd1d0309-851f-4635-969f-deb0dd852904",
+        "description": "This is the official documentation for the Brandtrack API.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Accounts",
+            "description": "",
+            "item": [
+                {
+                    "name": "List accounts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/accounts",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/accounts?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of accounts available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get an account by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/accounts\/:id",
+                            "query": [
+                                {
+                                    "key": "using_account_id",
+                                    "value": "",
+                                    "description": "Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/accounts\/:id?using_account_id=",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "19120",
+                                    "description": "The ID of the account."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single account by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update an account",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/accounts\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/accounts\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "19120",
+                                    "description": "The ID of the account."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"lmgyeixauzqovl\"}"
+                        },
+                        "description": "Only values provided in the request will be updated."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":19120,\"name\":\"John's Bakery US\",\"country\":\"US\",\"suspended\":false,\"source\":null}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\":\"This action is unauthorized.\",\"status_code\":403}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Handle account suspension status",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/accounts\/:id\/suspension",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/accounts\/:id\/suspension",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "19120",
+                                    "description": "The ID of the account."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"suspended\":false}"
+                        },
+                        "description": "By providing the bool value, you can set or unset the suspension status for an account."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":19120,\"name\":\"John's Bakery US\",\"country\":\"US\",\"suspended\":false,\"source\":null}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\":\"You can't set a suspension to an already suspended account.\",\"status_code\":409}",
+                            "name": "Suspension issue"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Subscriptions",
+            "description": "",
+            "item": [
+                {
+                    "name": "List subscriptions",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/subscriptions",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/subscriptions?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of subscriptions available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a subscription by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/subscriptions\/:id",
+                            "query": [
+                                {
+                                    "key": "using_account_id",
+                                    "value": "",
+                                    "description": "Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/subscriptions\/:id?using_account_id=",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "5392",
+                                    "description": "The ID of the subscription."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single subscription by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "description": "",
+            "item": [
+                {
+                    "name": "List users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/users",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/users?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of users available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a user by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/users\/:id",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/users\/:id?page=1&per_page=100&order_by=id&direction=desc",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "18782",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single user by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Invites a user to the platform",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"account_id\":19120,\"email\":\"testexample@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"role_id\":74}"
+                        },
+                        "description": "It will send automatically an email to the provided email address with a unique link to setup the user's account."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":18782,\"uuid\":\"e66f37fd-ac0a-4cb6-adba-33196a5c6f3e\",\"email\":\"john.doe@brandtrack.fm\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"phone_number\":\"+9332312323\",\"country\":\"BE\",\"role\":\"owner\",\"business_category_id\":62,\"flags\":[],\"created_at\":\"2024-07-09T13:34:16+00:00\"}}",
+                            "name": "Success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create temporary auth token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/users\/:id\/token",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/users\/:id\/token?page=1&per_page=100&order_by=id&direction=desc",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "18782",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Create a one-time token that allows to access to the account by opening the link provided.\nIt lasts only 1 hour and any attempting to use this token after 1 hour will result in a 401 Unauthorized response."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"user_id\":123456,\"token\":\"kz1OrilDejZlzpId2kuxwu91LYdlzi2B\",\"created_at\":\"2024-08-01T16:03:50Z\",\"expires_at\":\"2024-08-01T17:03:50Z\",\"url\":\"https:\/\/api.brandtrack.fm\/login\/token\/kz1OrilDejZlzpId2kuxwu91LYdlzi2B\",\"requested_by\":7303}}",
+                            "name": "Sucess"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Handle user suspension status",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/users\/:id\/suspension",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/users\/:id\/suspension",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "13",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"suspended\":false}"
+                        },
+                        "description": "By providing the bool value, you can set or unset the suspension status for a user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"id\":18782,\"uuid\":\"e66f37fd-ac0a-4cb6-adba-33196a5c6f3e\",\"email\":\"john.doe@brandtrack.fm\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"phone_number\":\"+9332312323\",\"country\":\"BE\",\"role\":\"owner\",\"business_category_id\":62,\"flags\":[],\"suspended\":false,\"created_at\":\"2024-07-09T13:34:16+00:00\"}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\":\"You can't set a suspension to an already suspended account.\",\"status_code\":409}",
+                            "name": "Suspension issue"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Locations",
+            "description": "",
+            "item": [
+                {
+                    "name": "List locations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/locations",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/locations?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of groups available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Return a location by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/locations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/locations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "26440",
+                                    "description": "The ID of the location."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single location by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a location",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/locations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/locations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ojpraplsvntmeldpdkmp\",\"country\":\"cl\",\"city\":\"qdddkgyxbjgquhfvasy\",\"address\":\"hveyqazuvntjbbskxezycdto\",\"zip_code\":\"jvxfuvlanyjkwggywkw\",\"phone_number\":\"blfyghkjmrvkjofiajevi\",\"email\":\"lindsey52@example.com\",\"manager\":\"sfkrcbygpvexfpx\",\"type\":\"franchise\",\"additional_information\":\"aqlgoitxfc\"}"
+                        },
+                        "description": "This endpoint is designed to by used by My Brandtrack users."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":26440,\"account_id\":19120,\"name\":\"Downtown Bakery\",\"country\":\"US\",\"address\":\"176 Berry St, Brooklyn\",\"phone_number\":\"11002929\",\"email\":\"john.doe@brandtrack.fm\",\"manager\":\"John Doe\",\"created_at\":\"2024-07-31T14:38:34+00:00\",\"timezone\":\"America\/Los_Angeles\",\"type\":\"own\",\"city\":\"New York\",\"zip_code\":\"11249\",\"additional_information\":null}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\":\"This action is unauthorized.\",\"status_code\":403}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a location",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/locations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/locations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "26440",
+                                    "description": "The ID of the location."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"xsw\",\"country\":\"ri\",\"city\":\"fkvyexjhhenjgyxsfhy\",\"address\":\"cndqkxrmxtzntfi\",\"zip_code\":\"pmczqek\",\"phone_number\":\"jjofnzimjvjdmni\",\"email\":\"collins.joesph@example.com\",\"manager\":\"pqbscnlbozwmfvhquiwfkly\",\"additional_information\":\"ktwxipkm\"}"
+                        },
+                        "description": "Only values provided in the request will be updated."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":26440,\"account_id\":19120,\"name\":\"Downtown Bakery\",\"country\":\"US\",\"address\":\"176 Berry St, Brooklyn\",\"phone_number\":\"11002929\",\"email\":\"john.doe@brandtrack.fm\",\"manager\":\"John Doe\",\"created_at\":\"2024-07-31T14:38:34+00:00\",\"timezone\":\"America\/Los_Angeles\",\"type\":\"own\",\"city\":\"New York\",\"zip_code\":\"11249\",\"additional_information\":null}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a location",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/locations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/locations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "26440",
+                                    "description": "The ID of the location."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a location using the ID. Any location with at least 1 zone related to, won't be deleted."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Zones",
+            "description": "",
+            "item": [
+                {
+                    "name": "List zones",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/zones?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of zones available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Return a zone by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones\/:id",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/zones\/:id?page=1&per_page=100&order_by=id&direction=desc",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the zone."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single zone by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a zone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/zones"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wksbjvmkcdvigzoocmgbmak\",\"normalization_type\":\"2020\",\"acknowledgement\":false,\"account_id\":\"dolores\",\"smart_integration_ids\":[\"ittbqvsmn\"],\"store\":{\"name\":\"nakazflogfmasszhyfusegkj\",\"country\":\"ty\",\"type\":\"franchise\",\"address\":\"eeqr\",\"phone_number\":\"smunsajmopwln\",\"email\":\"heaney.clair@example.org\",\"manager\":\"ulbq\",\"timezone\":\"America\\\/Argentina\\\/San_Luis\",\"city\":\"sipfqyniwoqkxoqmqztrraaei\",\"zip_code\":\"cvlwjh\",\"additional_information\":\"pqidxjf\"},\"box\":{\"recipient\":{\"name\":\"fvzwzdfklpkdvrrjiifbesfk\",\"address\":\"tttdqjjaflmwugos\",\"city\":\"ze\",\"zip_code\":\"xxxesuwlwqwcs\",\"identification_type\":\"PASSPORT\",\"identification_number\":\"qaeu\",\"phone\":\"ukgzevuvvrfsoypg\",\"additional_information\":\"tyxnhiinvnmylehopb\"},\"connection_settings\":{\"connection_type\":\"ETHERNET\",\"network\":\"tecxxs\",\"password\":\"faiP]=(ge69'\",\"type_of_network\":\"WEP\",\"ip_protocol_assignment\":\"Static\",\"ntp_address\":\"voluptatem\",\"proxy_address\":\"aliquam\",\"additional_information\":\"qjzybxschlooesxpaijvtq\"}}}"
+                        },
+                        "description": "It has an acknowledgement of the creation of the zone. If set to true, the zone will be created even if it is\nover the limits of the account and the subscription will be updated as well. Be aware with it, because you\nmight update your subscription.\n<aside class=\"notice\">This endpoint might affect your subscription according to the parameters provided.<\/aside>"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":30120,\"account_id\":19120,\"account_name\":\"John's Bakery US\",\"code\":\"207642\",\"uuid\":\"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\"name\":\"Downtown Bakery\",\"store_id\":26440,\"storage_info\":{\"available\":null,\"required\":null,\"is_critical\":false},\"volume\":100,\"has_volume_change_pending\":false,\"send_logs\":false,\"reset_state\":false,\"fudo_integration_id\":null,\"created_at\":\"2024-07-31T14:53:07+00:00\",\"updated_at\":\"2024-07-31T14:53:07+00:00\"}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong Store ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a zone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/zones\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the zone."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"odvnoazxsgrugbabhxvtekv\"}"
+                        },
+                        "description": "Only values provided in the request will be updated."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":30120,\"account_id\":19120,\"account_name\":\"John's Bakery US\",\"code\":\"207642\",\"uuid\":\"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\"name\":\"Downtown Bakery\",\"store_id\":26440,\"storage_info\":{\"available\":null,\"required\":null,\"is_critical\":false},\"volume\":100,\"has_volume_change_pending\":false,\"send_logs\":false,\"reset_state\":false,\"fudo_integration_id\":null,\"created_at\":\"2024-07-31T14:53:07+00:00\",\"updated_at\":\"2024-07-31T14:53:07+00:00\"}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a zone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/zones\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the zone."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"reason\":\"MUSICAL_DECISION\"}"
+                        },
+                        "description": "This won't affect your subscription."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Handle zone suspension status",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/zones\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "blanditiis",
+                                    "description": "The ID of the zone."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"suspended\":false}"
+                        },
+                        "description": "By providing the bool value, you can set or unset the suspension status for a zone."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":30120,\"account_id\":19120,\"account_name\":\"John's Bakery US\",\"code\":\"207642\",\"uuid\":\"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\"name\":\"Downtown Bakery\",\"store_id\":26440,\"storage_info\":{\"available\":null,\"required\":null,\"is_critical\":false},\"volume\":100,\"has_volume_change_pending\":false,\"send_logs\":false,\"reset_state\":false,\"fudo_integration_id\":null,\"created_at\":\"2024-07-31T14:53:07+00:00\",\"updated_at\":\"2024-07-31T14:53:07+00:00\"}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 402,
+                            "body": "{\"message\":\"Plan limit reached\",\"status_code\":402}",
+                            "name": "Subscription limit reached"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\":\"You can't set a suspension to an already suspended zone.\",\"status_code\":409}",
+                            "name": "Suspension issue"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a zone smart data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/zones\/smart\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/zones\/smart\/data"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"provider_key\":\"fudo\",\"date\":\"2024-08-01T12:00:00Z\",\"data\":{\"zones\":[{\"id\":123,\"current_capacity\":150,\"current_occupied\":75}]}}"
+                        },
+                        "description": "It will update the zones provided in the request. It might involve 1 up to 100 zones at a time.\n<aside class=\"notice\">Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid\nit will return an error.<\/aside>"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "",
+                            "name": "OK"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong Zone ID Provided"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong Credentials"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"422 Unprocessable Content\",\"errors\":{\"data.zones.0.id\":[\"The data.zones.0.id field is required.\"]},\"status_code\":422}",
+                            "name": "Non-valid payload request"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Groups",
+            "description": "",
+            "item": [
+                {
+                    "name": "List groups",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/groups",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page requested. Default to 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "100",
+                                    "description": "The number of items per page. Default to 25.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "id",
+                                    "description": "The field to order the results by. Default to id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "direction",
+                                    "value": "desc",
+                                    "description": "The direction method to sort results. Default to asc.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/groups?page=1&per_page=100&order_by=id&direction=desc"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a paginated list of groups available for the authenticated user."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a group by its ID",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/groups\/:id",
+                            "query": [
+                                {
+                                    "key": "include",
+                                    "value": "announcements%2Cmixes",
+                                    "description": "Any relation to be included, separated by commas. You can use: announcements, mixes, account.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/v2\/groups\/:id?include=announcements%2Cmixes",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return a single group by its ID, if available to the authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new group",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/groups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/groups"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"account_id\":5,\"music_profile_id\":9,\"name\":\"ratione\"}"
+                        },
+                        "description": "Create a new group using the provided data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":17351,\"account_id\":19120,\"music_profile_id\":null,\"name\":\"Music\",\"analytics\":{\"data\":{\"players\":0,\"announcements\":1,\"mixes\":0,\"radios\":0}}}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\":\"This action is unauthorized.\",\"status_code\":403}",
+                            "name": "Forbidden"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a group",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/groups\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/groups\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"account_id\":5,\"music_profile_id\":1,\"name\":\"sed\"}"
+                        },
+                        "description": "Update a group with the data provided in the request."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":17351,\"account_id\":19120,\"music_profile_id\":null,\"name\":\"Music\",\"analytics\":{\"data\":{\"players\":0,\"announcements\":1,\"mixes\":0,\"radios\":0}}}}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a group",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/groups\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/groups\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "17351",
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete a group using the ID. Any zone related will lose the access to the playlists and announcements immediately."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"404 Not Found\",\"status_code\":404}",
+                            "name": "Wrong ID"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Roles",
+            "description": "",
+            "item": [
+                {
+                    "name": "List all roles",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "v2\/roles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/v2\/roles"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Other",
+            "description": "",
+            "item": [
+                {
+                    "name": "List all business categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "business_categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/business_categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Return all business categories available in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"key\":\"retail\",\"parent_id\":null,\"name\":\"Retail\"}]}",
+                            "name": "success"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Partner",
+            "description": "",
+            "item": [
+                {
+                    "name": "Accounts",
+                    "description": "Endpoints for managing accounts.",
+                    "item": [
+                        {
+                            "name": "Create account",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "partner\/accounts\/register",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/partner\/accounts\/register"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "X-Partner-Key",
+                                        "value": "abc123"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"name\":\"VetShop\",\"country\":\"US\",\"business_category_id\":1,\"email\":\"john.doe@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"phone_number\":\"1234567890\"}"
+                                },
+                                "description": "It creates a new account based on the provided data. Also, create a user and sends the default email.",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"account_id\":1,\"account_name\":\"test account name\",\"user_id\":1,\"url\":\"https:\/\/my.brandtrack.fm\/login\/token\/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh\"}",
+                                    "name": "success"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Users",
+                    "description": "Endpoints for managing users.",
+                    "item": [
+                        {
+                            "name": "Creates a new token for requested user.",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "partner\/users\/:id\/token",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/partner\/users\/:id\/token",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "1",
+                                            "description": "The ID of the user."
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "X-Partner-Key",
+                                        "value": "abc123"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "It returns a new token for the user provided that lasts 1 hour and can be used only once.",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\":{\"user_id\":1482,\"token\":\"QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF\",\"created_at\":\"2025-02-07 10:27:21\",\"expires_at\":\"2025-02-07 11:27:21\",\"url\":\"https:\/\/my.brandtrack.fm\/login\/token\/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF\"}}",
+                                    "name": "success"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "in",
+                "value": "header",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "x-customer-api-key",
+                "type": "string"
+            }
+        ]
+    }
+}

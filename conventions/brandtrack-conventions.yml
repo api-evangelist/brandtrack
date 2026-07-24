@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brandtrack-openapi-original.yml + https://developers.brandtrack.ai/
+authentication:
+  style: api-key-header
+  header: x-customer-api-key
+  partner_header: X-Partner-Key
+  oauth2: authorizationCode (PKCE S256, scope "mcp") — discovered via .well-known, undocumented
+  ref: authentication/brandtrack-authentication.yml
+pagination:
+  style: page-number
+  params:
+    page: Page number, default 1.
+    per_page: Items per page, default 25.
+    order_by: Field to sort by, default id.
+    direction: Sort direction asc|desc, default asc.
+  applies_to: All list (index) endpoints.
+includes:
+  style: include-parameter
+  description: >-
+    Some retrieve endpoints (e.g. GET /v2/groups/{id}) accept an "include" query
+    parameter to embed related resources (announcements, mixes, zones).
+versioning:
+  scheme: uri-path
+  current: v2
+  note: REST resources are under /v2/; partner endpoints under /partner/.
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented or present in the OpenAPI.
+error_envelope:
+  content_type: application/json
+  shape: '{ message, status_code, errors? }'
+  ref: errors/brandtrack-problem-types.yml
+rate_limiting:
+  documented: false
+  note: No rate-limit headers or policy are published in the docs or OpenAPI.
+request_tracing:
+  documented: false
+tokens:
+  temporary_user_token: >-
+    POST /v2/users/{id}/token mints a temporary auth token valid for 1 hour
+    (also available via partner endpoint POST /partner/users/{id}/token).

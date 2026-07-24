@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/brandtrack-openapi-original.yml + https://developers.brandtrack.ai/
+note: >-
+  The OpenAPI declares no components.schemas, so this entity graph is derived from the
+  resource/path structure, the "include" relationships, and the partner registration flow.
+entities:
+- name: Account
+  path: /v2/accounts
+  description: Top-level customer account; can be suspended.
+- name: Subscription
+  path: /v2/subscriptions
+  description: Plan/subscription tied to an account; enforces plan limits (402).
+- name: User
+  path: /v2/users
+  description: Platform user; can be invited, suspended, and issued a 1-hour temporary token.
+- name: Location
+  path: /v2/locations
+  description: A physical venue belonging to an account; contains zones.
+- name: Zone
+  path: /v2/zones
+  description: A playback area within a location; carries smart data and suspension state.
+- name: Group
+  path: /v2/groups
+  description: A grouping of zones/announcements/mixes; supports include of related resources.
+- name: Role
+  path: /v2/roles
+  description: Role definitions assignable to users.
+- name: BusinessCategory
+  path: /business_categories
+  description: Reference list of business categories (unauthenticated).
+relationships:
+- from: Location
+  to: Account
+  type: belongs_to
+  via: account
+- from: Location
+  to: Zone
+  type: has_many
+  via: zones
+- from: Zone
+  to: Location
+  type: belongs_to
+  via: location
+- from: Subscription
+  to: Account
+  type: belongs_to
+  via: account
+- from: Group
+  to: Zone
+  type: has_many
+  via: zones (include)
+- from: Group
+  to: Announcement
+  type: has_many
+  via: announcements (include)
+- from: Group
+  to: Mix
+  type: has_many
+  via: mixes (include)
+- from: User
+  to: Account
+  type: belongs_to
+  via: account
+- from: User
+  to: Role
+  type: has_one
+  via: role

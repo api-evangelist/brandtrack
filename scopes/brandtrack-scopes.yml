@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://api.brandtrack.fm/.well-known/oauth-authorization-server
+docs: https://api.brandtrack.fm/.well-known/oauth-authorization-server
+note: >-
+  Brandtrack's public REST API documents only x-customer-api-key (header) auth. The
+  OAuth surface below was discovered via RFC 8414 authorization-server metadata at
+  api.brandtrack.fm and is not yet documented in the human docs. It exposes a single
+  "mcp" scope, indicating an OAuth-guarded MCP/agent access path distinct from the
+  REST API key.
+schemes:
+- name: OAuth2
+  source: https://api.brandtrack.fm/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.brandtrack.fm/oauth/authorize
+    tokenUrl: https://api.brandtrack.fm/oauth/token
+    revocationUrl: https://api.brandtrack.fm/oauth/revoke
+    pkce: S256
+    grant_types: [authorization_code, refresh_token]
+scopes:
+- scope: mcp
+  description: Access the Brandtrack MCP / agent surface guarded by OAuth 2.0.
+  flows: [authorizationCode]
+  sources: [https://api.brandtrack.fm/.well-known/oauth-authorization-server]

@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of api.brandtrack.fm + www.brandtrack.ai + developers.brandtrack.ai
+host: https://api.brandtrack.fm
+documents:
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: brandtrack-oauth-authorization-server.json
+  standard: RFC 8414
+- path: /.well-known/oauth-protected-resource
+  status: 200
+  file: brandtrack-oauth-protected-resource.json
+  standard: RFC 9728
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+notes: >-
+  api.brandtrack.fm publishes OAuth 2.0 authorization-server and protected-resource
+  metadata declaring PKCE (S256), authorization_code + refresh_token grants, and a
+  single "mcp" scope — evidence of an OAuth-guarded, MCP-oriented access surface,
+  even though the public REST docs only document x-customer-api-key auth.
+  No documents were served from www.brandtrack.ai or developers.brandtrack.ai.

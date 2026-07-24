@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Brandtrack API
+  version: 1.0.0
+extends: openapi/brandtrack-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-apievangelist-auth-note: >-
+      Primary auth is the x-customer-api-key header; partner endpoints use X-Partner-Key.
+      An OAuth 2.0 authorization server (PKCE S256, scope "mcp") is published at
+      api.brandtrack.fm/.well-known/oauth-authorization-server but is not in these docs.
+    x-apievangelist-error-envelope: '{ message, status_code, errors? } — not RFC 9457'
+- target: $.servers[0]
+  update:
+    url: https://api.brandtrack.fm
+    description: >-
+      Production. The original spec lists the host without a scheme; the REST base path
+      is /v2 (partner endpoints under /partner).
+- target: $.info
+  update:
+    x-apievangelist-pagination: page/per_page/order_by/direction on all list endpoints
+    x-apievangelist-idempotency: not supported

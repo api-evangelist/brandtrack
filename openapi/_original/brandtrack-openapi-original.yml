@@ -1,0 +1,3382 @@
+openapi: 3.0.3
+info:
+  title: 'Brandtrack API Documentation'
+  description: 'This is the official documentation for the Brandtrack API.'
+  version: 1.0.0
+servers:
+  -
+    url: api.brandtrack.fm
+paths:
+  /v2/accounts:
+    get:
+      summary: 'List accounts'
+      operationId: listAccounts
+      description: 'Return a paginated list of accounts available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Accounts
+  '/v2/accounts/{id}':
+    get:
+      summary: 'Get an account by its ID'
+      operationId: getAnAccountByItsID
+      description: 'Return a single account by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: using_account_id
+          description: 'Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.'
+            example: 0
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Accounts
+    patch:
+      summary: 'Update an account'
+      operationId: updateAnAccount
+      description: 'Only values provided in the request will be updated.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 19120
+                    name: "John's Bakery US"
+                    country: US
+                    suspended: false
+                    source: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: "John's Bakery US"
+                      country:
+                        type: string
+                        example: US
+                      suspended:
+                        type: boolean
+                        example: false
+                      source:
+                        type: string
+                        example: null
+        403:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                  status_code: 403
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+                  status_code:
+                    type: integer
+                    example: 403
+      tags:
+        - Accounts
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: lmgyeixauzqovl
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the account.'
+        example: 19120
+        required: true
+        schema:
+          type: integer
+  '/v2/accounts/{id}/suspension':
+    post:
+      summary: 'Handle account suspension status'
+      operationId: handleAccountSuspensionStatus
+      description: 'By providing the bool value, you can set or unset the suspension status for an account.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 19120
+                    name: "John's Bakery US"
+                    country: US
+                    suspended: false
+                    source: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: "John's Bakery US"
+                      country:
+                        type: string
+                        example: US
+                      suspended:
+                        type: boolean
+                        example: false
+                      source:
+                        type: string
+                        example: null
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+        409:
+          description: 'Suspension issue'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: "You can't set a suspension to an already suspended account."
+                  status_code: 409
+                properties:
+                  message:
+                    type: string
+                    example: "You can't set a suspension to an already suspended account."
+                  status_code:
+                    type: integer
+                    example: 409
+      tags:
+        - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                suspended:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - suspended
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the account.'
+        example: 19120
+        required: true
+        schema:
+          type: integer
+  /v2/subscriptions:
+    get:
+      summary: 'List subscriptions'
+      operationId: listSubscriptions
+      description: 'Return a paginated list of subscriptions available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Subscriptions
+  '/v2/subscriptions/{id}':
+    get:
+      summary: 'Get a subscription by its ID'
+      operationId: getASubscriptionByItsID
+      description: 'Return a single subscription by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: using_account_id
+          description: 'Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null.'
+            example: 0
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Subscriptions
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the subscription.'
+        example: 5392
+        required: true
+        schema:
+          type: integer
+  /v2/users:
+    get:
+      summary: 'List users'
+      operationId: listUsers
+      description: 'Return a paginated list of users available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Users
+    post:
+      summary: 'Invites a user to the platform'
+      operationId: invitesAUserToThePlatform
+      description: "It will send automatically an email to the provided email address with a unique link to setup the user's account."
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 18782
+                    uuid: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                    email: john.doe@brandtrack.fm
+                    firstname: John
+                    lastname: Doe
+                    phone_number: '+9332312323'
+                    country: BE
+                    role: owner
+                    business_category_id: 62
+                    flags: []
+                    created_at: '2024-07-09T13:34:16+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18782
+                      uuid:
+                        type: string
+                        example: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      firstname:
+                        type: string
+                        example: John
+                      lastname:
+                        type: string
+                        example: Doe
+                      phone_number:
+                        type: string
+                        example: '+9332312323'
+                      country:
+                        type: string
+                        example: BE
+                      role:
+                        type: string
+                        example: owner
+                      business_category_id:
+                        type: integer
+                        example: 62
+                      flags:
+                        type: array
+                        example: []
+                      created_at:
+                        type: string
+                        example: '2024-07-09T13:34:16+00:00'
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: 'The account where this user will be created.'
+                  example: 19120
+                  nullable: true
+                email:
+                  type: string
+                  description: 'The email to be registered.'
+                  example: testexample@example.com
+                  nullable: false
+                firstname:
+                  type: string
+                  description: "User's firstname."
+                  example: John
+                  nullable: false
+                lastname:
+                  type: string
+                  description: "User's lastname."
+                  example: Doe
+                  nullable: false
+                role_id:
+                  type: integer
+                  description: 'The role to assign to the new user.'
+                  example: 74
+                  nullable: false
+              required:
+                - account_id
+                - email
+                - firstname
+                - lastname
+                - role_id
+  '/v2/users/{id}':
+    get:
+      summary: 'Get a user by its ID'
+      operationId: getAUserByItsID
+      description: 'Return a single user by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 18782
+        required: true
+        schema:
+          type: integer
+  '/v2/users/{id}/token':
+    post:
+      summary: 'Create temporary auth token'
+      operationId: createTemporaryAuthToken
+      description: "Create a one-time token that allows to access to the account by opening the link provided.\nIt lasts only 1 hour and any attempting to use this token after 1 hour will result in a 401 Unauthorized response."
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user_id: 123456
+                    token: kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                    created_at: '2024-08-01T16:03:50Z'
+                    expires_at: '2024-08-01T17:03:50Z'
+                    url: 'https://api.brandtrack.fm/login/token/kz1OrilDejZlzpId2kuxwu91LYdlzi2B'
+                    requested_by: 7303
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 123456
+                      token:
+                        type: string
+                        example: kz1OrilDejZlzpId2kuxwu91LYdlzi2B
+                      created_at:
+                        type: string
+                        example: '2024-08-01T16:03:50Z'
+                      expires_at:
+                        type: string
+                        example: '2024-08-01T17:03:50Z'
+                      url:
+                        type: string
+                        example: 'https://api.brandtrack.fm/login/token/kz1OrilDejZlzpId2kuxwu91LYdlzi2B'
+                      requested_by:
+                        type: integer
+                        example: 7303
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 18782
+        required: true
+        schema:
+          type: integer
+  '/v2/users/{id}/suspension':
+    post:
+      summary: 'Handle user suspension status'
+      operationId: handleUserSuspensionStatus
+      description: 'By providing the bool value, you can set or unset the suspension status for a user.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 18782
+                  uuid: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                  email: john.doe@brandtrack.fm
+                  firstname: John
+                  lastname: Doe
+                  phone_number: '+9332312323'
+                  country: BE
+                  role: owner
+                  business_category_id: 62
+                  flags: []
+                  suspended: false
+                  created_at: '2024-07-09T13:34:16+00:00'
+                properties:
+                  id:
+                    type: integer
+                    example: 18782
+                  uuid:
+                    type: string
+                    example: e66f37fd-ac0a-4cb6-adba-33196a5c6f3e
+                  email:
+                    type: string
+                    example: john.doe@brandtrack.fm
+                  firstname:
+                    type: string
+                    example: John
+                  lastname:
+                    type: string
+                    example: Doe
+                  phone_number:
+                    type: string
+                    example: '+9332312323'
+                  country:
+                    type: string
+                    example: BE
+                  role:
+                    type: string
+                    example: owner
+                  business_category_id:
+                    type: integer
+                    example: 62
+                  flags:
+                    type: array
+                    example: []
+                  suspended:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2024-07-09T13:34:16+00:00'
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+        409:
+          description: 'Suspension issue'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: "You can't set a suspension to an already suspended account."
+                  status_code: 409
+                properties:
+                  message:
+                    type: string
+                    example: "You can't set a suspension to an already suspended account."
+                  status_code:
+                    type: integer
+                    example: 409
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                suspended:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - suspended
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 13
+        required: true
+        schema:
+          type: integer
+  /v2/locations:
+    get:
+      summary: 'List locations'
+      operationId: listLocations
+      description: 'Return a paginated list of groups available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Locations
+    post:
+      summary: 'Create a location'
+      operationId: createALocation
+      description: 'This endpoint is designed to by used by My Brandtrack users.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 26440
+                    account_id: 19120
+                    name: 'Downtown Bakery'
+                    country: US
+                    address: '176 Berry St, Brooklyn'
+                    phone_number: '11002929'
+                    email: john.doe@brandtrack.fm
+                    manager: 'John Doe'
+                    created_at: '2024-07-31T14:38:34+00:00'
+                    timezone: America/Los_Angeles
+                    type: own
+                    city: 'New York'
+                    zip_code: '11249'
+                    additional_information: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 26440
+                      account_id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: 'Downtown Bakery'
+                      country:
+                        type: string
+                        example: US
+                      address:
+                        type: string
+                        example: '176 Berry St, Brooklyn'
+                      phone_number:
+                        type: string
+                        example: '11002929'
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      manager:
+                        type: string
+                        example: 'John Doe'
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:38:34+00:00'
+                      timezone:
+                        type: string
+                        example: America/Los_Angeles
+                      type:
+                        type: string
+                        example: own
+                      city:
+                        type: string
+                        example: 'New York'
+                      zip_code:
+                        type: string
+                        example: '11249'
+                      additional_information:
+                        type: string
+                        example: null
+        403:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                  status_code: 403
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+                  status_code:
+                    type: integer
+                    example: 403
+      tags:
+        - Locations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: ojpraplsvntmeldpdkmp
+                  nullable: false
+                country:
+                  type: string
+                  description: 'The <code>iso</code> of an existing record in the countries table. Must be 2 characters.'
+                  example: cl
+                  nullable: false
+                city:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: qdddkgyxbjgquhfvasy
+                  nullable: false
+                address:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: hveyqazuvntjbbskxezycdto
+                  nullable: false
+                zip_code:
+                  type: string
+                  description: 'Must not be greater than 20 characters.'
+                  example: jvxfuvlanyjkwggywkw
+                  nullable: false
+                phone_number:
+                  type: string
+                  description: 'Must not be greater than 40 characters.'
+                  example: blfyghkjmrvkjofiajevi
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 100 characters.'
+                  example: lindsey52@example.com
+                  nullable: false
+                manager:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: sfkrcbygpvexfpx
+                  nullable: false
+                type:
+                  type: string
+                  description: ''
+                  example: franchise
+                  nullable: false
+                  enum:
+                    - own
+                    - franchise
+                additional_information:
+                  type: string
+                  description: 'Must not be greater than 1024 characters.'
+                  example: aqlgoitxfc
+                  nullable: true
+              required:
+                - name
+                - country
+                - city
+                - address
+                - zip_code
+                - phone_number
+                - email
+                - manager
+                - type
+  '/v2/locations/{id}':
+    get:
+      summary: 'Return a location by its ID'
+      operationId: returnALocationByItsID
+      description: 'Return a single location by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Locations
+    patch:
+      summary: 'Update a location'
+      operationId: updateALocation
+      description: 'Only values provided in the request will be updated.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 26440
+                    account_id: 19120
+                    name: 'Downtown Bakery'
+                    country: US
+                    address: '176 Berry St, Brooklyn'
+                    phone_number: '11002929'
+                    email: john.doe@brandtrack.fm
+                    manager: 'John Doe'
+                    created_at: '2024-07-31T14:38:34+00:00'
+                    timezone: America/Los_Angeles
+                    type: own
+                    city: 'New York'
+                    zip_code: '11249'
+                    additional_information: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 26440
+                      account_id:
+                        type: integer
+                        example: 19120
+                      name:
+                        type: string
+                        example: 'Downtown Bakery'
+                      country:
+                        type: string
+                        example: US
+                      address:
+                        type: string
+                        example: '176 Berry St, Brooklyn'
+                      phone_number:
+                        type: string
+                        example: '11002929'
+                      email:
+                        type: string
+                        example: john.doe@brandtrack.fm
+                      manager:
+                        type: string
+                        example: 'John Doe'
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:38:34+00:00'
+                      timezone:
+                        type: string
+                        example: America/Los_Angeles
+                      type:
+                        type: string
+                        example: own
+                      city:
+                        type: string
+                        example: 'New York'
+                      zip_code:
+                        type: string
+                        example: '11249'
+                      additional_information:
+                        type: string
+                        example: null
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Locations
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: xsw
+                  nullable: false
+                country:
+                  type: string
+                  description: 'The <code>iso</code> of an existing record in the countries table. Must be 2 characters.'
+                  example: ri
+                  nullable: false
+                city:
+                  type: string
+                  description: 'Must not be greater than 100 characters.'
+                  example: fkvyexjhhenjgyxsfhy
+                  nullable: true
+                address:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: cndqkxrmxtzntfi
+                  nullable: true
+                zip_code:
+                  type: string
+                  description: 'Must not be greater than 20 characters.'
+                  example: pmczqek
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: 'Must not be greater than 40 characters.'
+                  example: jjofnzimjvjdmni
+                  nullable: true
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 100 characters.'
+                  example: collins.joesph@example.com
+                  nullable: true
+                manager:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: pqbscnlbozwmfvhquiwfkly
+                  nullable: true
+                additional_information:
+                  type: string
+                  description: 'Must not be greater than 1024 characters.'
+                  example: ktwxipkm
+                  nullable: true
+    delete:
+      summary: 'Delete a location'
+      operationId: deleteALocation
+      description: "Delete a location using the ID. Any location with at least 1 zone related to, won't be deleted."
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        204:
+          description: Success
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Locations
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the location.'
+        example: 26440
+        required: true
+        schema:
+          type: integer
+  /v2/zones:
+    get:
+      summary: 'List zones'
+      operationId: listZones
+      description: 'Return a paginated list of zones available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Zones
+    post:
+      summary: 'Create a zone'
+      operationId: createAZone
+      description: "It has an acknowledgement of the creation of the zone. If set to true, the zone will be created even if it is\nover the limits of the account and the subscription will be updated as well. Be aware with it, because you\nmight update your subscription.\n<aside class=\"notice\">This endpoint might affect your subscription according to the parameters provided.</aside>"
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 30120
+                    account_id: 19120
+                    account_name: "John's Bakery US"
+                    code: '207642'
+                    uuid: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                    name: 'Downtown Bakery'
+                    store_id: 26440
+                    storage_info:
+                      available: null
+                      required: null
+                      is_critical: false
+                    volume: 100
+                    has_volume_change_pending: false
+                    send_logs: false
+                    reset_state: false
+                    fudo_integration_id: null
+                    created_at: '2024-07-31T14:53:07+00:00'
+                    updated_at: '2024-07-31T14:53:07+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 30120
+                      account_id:
+                        type: integer
+                        example: 19120
+                      account_name:
+                        type: string
+                        example: "John's Bakery US"
+                      code:
+                        type: string
+                        example: '207642'
+                      uuid:
+                        type: string
+                        example: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                      name:
+                        type: string
+                        example: 'Downtown Bakery'
+                      store_id:
+                        type: integer
+                        example: 26440
+                      storage_info:
+                        type: object
+                        properties:
+                          available:
+                            type: string
+                            example: null
+                          required:
+                            type: string
+                            example: null
+                          is_critical:
+                            type: boolean
+                            example: false
+                      volume:
+                        type: integer
+                        example: 100
+                      has_volume_change_pending:
+                        type: boolean
+                        example: false
+                      send_logs:
+                        type: boolean
+                        example: false
+                      reset_state:
+                        type: boolean
+                        example: false
+                      fudo_integration_id:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+                      updated_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+        404:
+          description: 'Wrong Store ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Zones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: wksbjvmkcdvigzoocmgbmak
+                  nullable: false
+                normalization_type:
+                  type: string
+                  description: ''
+                  example: '2020'
+                  nullable: false
+                  enum:
+                    - default
+                    - '2020'
+                    - '2021'
+                acknowledgement:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+                account_id:
+                  type: string
+                  description: ''
+                  example: dolores
+                  nullable: false
+                smart_integration_ids:
+                  type: array
+                  description: 'Must not be greater than 20 characters.'
+                  example:
+                    - ittbqvsmn
+                  items:
+                    type: string
+                store_id:
+                  type: string
+                  description: 'This field is required when <code>store</code> is not present.  The <code>id</code> of an existing record in the stores table.'
+                  example: null
+                  nullable: false
+                store:
+                  type: object
+                  description: 'This field is required when <code>store_id</code> is not present.'
+                  example: null
+                  nullable: false
+                  properties:
+                    account_id:
+                      type: string
+                      description: 'This field is required when <code>store_id</code> is not present.  The <code>id</code> of an existing record in the accounts table.'
+                      example: null
+                      nullable: false
+                    name:
+                      type: string
+                      description: 'This field is required when <code>store_id</code> is not present. Must not be greater than 100 characters.'
+                      example: nakazflogfmasszhyfusegkj
+                      nullable: false
+                    country:
+                      type: string
+                      description: 'This field is required when <code>store_id</code> is not present.  The <code>iso</code> of an existing record in the countries table. Must be 2 characters.'
+                      example: ty
+                      nullable: false
+                    type:
+                      type: string
+                      description: 'This field is required when <code>store_id</code> is not present.'
+                      example: franchise
+                      nullable: false
+                      enum:
+                        - own
+                        - franchise
+                    address:
+                      type: string
+                      description: 'Must not be greater than 255 characters.'
+                      example: eeqr
+                      nullable: true
+                    phone_number:
+                      type: string
+                      description: 'Must not be greater than 40 characters.'
+                      example: smunsajmopwln
+                      nullable: true
+                    email:
+                      type: string
+                      description: 'Must be a valid email address. Must not be greater than 100 characters.'
+                      example: heaney.clair@example.org
+                      nullable: true
+                    manager:
+                      type: string
+                      description: 'Must not be greater than 255 characters.'
+                      example: ulbq
+                      nullable: true
+                    timezone:
+                      type: string
+                      description: ''
+                      example: America/Argentina/San_Luis
+                      nullable: true
+                      enum:
+                        - Africa/Abidjan
+                        - Africa/Accra
+                        - Africa/Addis_Ababa
+                        - Africa/Algiers
+                        - Africa/Asmara
+                        - Africa/Bamako
+                        - Africa/Bangui
+                        - Africa/Banjul
+                        - Africa/Bissau
+                        - Africa/Blantyre
+                        - Africa/Brazzaville
+                        - Africa/Bujumbura
+                        - Africa/Cairo
+                        - Africa/Casablanca
+                        - Africa/Ceuta
+                        - Africa/Conakry
+                        - Africa/Dakar
+                        - Africa/Dar_es_Salaam
+                        - Africa/Djibouti
+                        - Africa/Douala
+                        - Africa/El_Aaiun
+                        - Africa/Freetown
+                        - Africa/Gaborone
+                        - Africa/Harare
+                        - Africa/Johannesburg
+                        - Africa/Juba
+                        - Africa/Kampala
+                        - Africa/Khartoum
+                        - Africa/Kigali
+                        - Africa/Kinshasa
+                        - Africa/Lagos
+                        - Africa/Libreville
+                        - Africa/Lome
+                        - Africa/Luanda
+                        - Africa/Lubumbashi
+                        - Africa/Lusaka
+                        - Africa/Malabo
+                        - Africa/Maputo
+                        - Africa/Maseru
+                        - Africa/Mbabane
+                        - Africa/Mogadishu
+                        - Africa/Monrovia
+                        - Africa/Nairobi
+                        - Africa/Ndjamena
+                        - Africa/Niamey
+                        - Africa/Nouakchott
+                        - Africa/Ouagadougou
+                        - Africa/Porto-Novo
+                        - Africa/Sao_Tome
+                        - Africa/Tripoli
+                        - Africa/Tunis
+                        - Africa/Windhoek
+                        - America/Adak
+                        - America/Anchorage
+                        - America/Anguilla
+                        - America/Antigua
+                        - America/Araguaina
+                        - America/Argentina/Buenos_Aires
+                        - America/Argentina/Catamarca
+                        - America/Argentina/Cordoba
+                        - America/Argentina/Jujuy
+                        - America/Argentina/La_Rioja
+                        - America/Argentina/Mendoza
+                        - America/Argentina/Rio_Gallegos
+                        - America/Argentina/Salta
+                        - America/Argentina/San_Juan
+                        - America/Argentina/San_Luis
+                        - America/Argentina/Tucuman
+                        - America/Argentina/Ushuaia
+                        - America/Aruba
+                        - America/Asuncion
+                        - America/Atikokan
+                        - America/Bahia
+                        - America/Bahia_Banderas
+                        - America/Barbados
+                        - America/Belem
+                        - America/Belize
+                        - America/Blanc-Sablon
+                        - America/Boa_Vista
+                        - America/Bogota
+                        - America/Boise
+                        - America/Cambridge_Bay
+                        - America/Campo_Grande
+                        - America/Cancun
+                        - America/Caracas
+                        - America/Cayenne
+                        - America/Cayman
+                        - America/Chicago
+                        - America/Chihuahua
+                        - America/Ciudad_Juarez
+                        - America/Costa_Rica
+                        - America/Creston
+                        - America/Cuiaba
+                        - America/Curacao
+                        - America/Danmarkshavn
+                        - America/Dawson
+                        - America/Dawson_Creek
+                        - America/Denver
+                        - America/Detroit
+                        - America/Dominica
+                        - America/Edmonton
+                        - America/Eirunepe
+                        - America/El_Salvador
+                        - America/Fort_Nelson
+                        - America/Fortaleza
+                        - America/Glace_Bay
+                        - America/Goose_Bay
+                        - America/Grand_Turk
+                        - America/Grenada
+                        - America/Guadeloupe
+                        - America/Guatemala
+                        - America/Guayaquil
+                        - America/Guyana
+                        - America/Halifax
+                        - America/Havana
+                        - America/Hermosillo
+                        - America/Indiana/Indianapolis
+                        - America/Indiana/Knox
+                        - America/Indiana/Marengo
+                        - America/Indiana/Petersburg
+                        - America/Indiana/Tell_City
+                        - America/Indiana/Vevay
+                        - America/Indiana/Vincennes
+                        - America/Indiana/Winamac
+                        - America/Inuvik
+                        - America/Iqaluit
+                        - America/Jamaica
+                        - America/Juneau
+                        - America/Kentucky/Louisville
+                        - America/Kentucky/Monticello
+                        - America/Kralendijk
+                        - America/La_Paz
+                        - America/Lima
+                        - America/Los_Angeles
+                        - America/Lower_Princes
+                        - America/Maceio
+                        - America/Managua
+                        - America/Manaus
+                        - America/Marigot
+                        - America/Martinique
+                        - America/Matamoros
+                        - America/Mazatlan
+                        - America/Menominee
+                        - America/Merida
+                        - America/Metlakatla
+                        - America/Mexico_City
+                        - America/Miquelon
+                        - America/Moncton
+                        - America/Monterrey
+                        - America/Montevideo
+                        - America/Montserrat
+                        - America/Nassau
+                        - America/New_York
+                        - America/Nome
+                        - America/Noronha
+                        - America/North_Dakota/Beulah
+                        - America/North_Dakota/Center
+                        - America/North_Dakota/New_Salem
+                        - America/Nuuk
+                        - America/Ojinaga
+                        - America/Panama
+                        - America/Paramaribo
+                        - America/Phoenix
+                        - America/Port-au-Prince
+                        - America/Port_of_Spain
+                        - America/Porto_Velho
+                        - America/Puerto_Rico
+                        - America/Punta_Arenas
+                        - America/Rankin_Inlet
+                        - America/Recife
+                        - America/Regina
+                        - America/Resolute
+                        - America/Rio_Branco
+                        - America/Santarem
+                        - America/Santiago
+                        - America/Santo_Domingo
+                        - America/Sao_Paulo
+                        - America/Scoresbysund
+                        - America/Sitka
+                        - America/St_Barthelemy
+                        - America/St_Johns
+                        - America/St_Kitts
+                        - America/St_Lucia
+                        - America/St_Thomas
+                        - America/St_Vincent
+                        - America/Swift_Current
+                        - America/Tegucigalpa
+                        - America/Thule
+                        - America/Tijuana
+                        - America/Toronto
+                        - America/Tortola
+                        - America/Vancouver
+                        - America/Whitehorse
+                        - America/Winnipeg
+                        - America/Yakutat
+                        - Antarctica/Casey
+                        - Antarctica/Davis
+                        - Antarctica/DumontDUrville
+                        - Antarctica/Macquarie
+                        - Antarctica/Mawson
+                        - Antarctica/McMurdo
+                        - Antarctica/Palmer
+                        - Antarctica/Rothera
+                        - Antarctica/Syowa
+                        - Antarctica/Troll
+                        - Antarctica/Vostok
+                        - Arctic/Longyearbyen
+                        - Asia/Aden
+                        - Asia/Almaty
+                        - Asia/Amman
+                        - Asia/Anadyr
+                        - Asia/Aqtau
+                        - Asia/Aqtobe
+                        - Asia/Ashgabat
+                        - Asia/Atyrau
+                        - Asia/Baghdad
+                        - Asia/Bahrain
+                        - Asia/Baku
+                        - Asia/Bangkok
+                        - Asia/Barnaul
+                        - Asia/Beirut
+                        - Asia/Bishkek
+                        - Asia/Brunei
+                        - Asia/Chita
+                        - Asia/Choibalsan
+                        - Asia/Colombo
+                        - Asia/Damascus
+                        - Asia/Dhaka
+                        - Asia/Dili
+                        - Asia/Dubai
+                        - Asia/Dushanbe
+                        - Asia/Famagusta
+                        - Asia/Gaza
+                        - Asia/Hebron
+                        - Asia/Ho_Chi_Minh
+                        - Asia/Hong_Kong
+                        - Asia/Hovd
+                        - Asia/Irkutsk
+                        - Asia/Jakarta
+                        - Asia/Jayapura
+                        - Asia/Jerusalem
+                        - Asia/Kabul
+                        - Asia/Kamchatka
+                        - Asia/Karachi
+                        - Asia/Kathmandu
+                        - Asia/Khandyga
+                        - Asia/Kolkata
+                        - Asia/Krasnoyarsk
+                        - Asia/Kuala_Lumpur
+                        - Asia/Kuching
+                        - Asia/Kuwait
+                        - Asia/Macau
+                        - Asia/Magadan
+                        - Asia/Makassar
+                        - Asia/Manila
+                        - Asia/Muscat
+                        - Asia/Nicosia
+                        - Asia/Novokuznetsk
+                        - Asia/Novosibirsk
+                        - Asia/Omsk
+                        - Asia/Oral
+                        - Asia/Phnom_Penh
+                        - Asia/Pontianak
+                        - Asia/Pyongyang
+                        - Asia/Qatar
+                        - Asia/Qostanay
+                        - Asia/Qyzylorda
+                        - Asia/Riyadh
+                        - Asia/Sakhalin
+                        - Asia/Samarkand
+                        - Asia/Seoul
+                        - Asia/Shanghai
+                        - Asia/Singapore
+                        - Asia/Srednekolymsk
+                        - Asia/Taipei
+                        - Asia/Tashkent
+                        - Asia/Tbilisi
+                        - Asia/Tehran
+                        - Asia/Thimphu
+                        - Asia/Tokyo
+                        - Asia/Tomsk
+                        - Asia/Ulaanbaatar
+                        - Asia/Urumqi
+                        - Asia/Ust-Nera
+                        - Asia/Vientiane
+                        - Asia/Vladivostok
+                        - Asia/Yakutsk
+                        - Asia/Yangon
+                        - Asia/Yekaterinburg
+                        - Asia/Yerevan
+                        - Atlantic/Azores
+                        - Atlantic/Bermuda
+                        - Atlantic/Canary
+                        - Atlantic/Cape_Verde
+                        - Atlantic/Faroe
+                        - Atlantic/Madeira
+                        - Atlantic/Reykjavik
+                        - Atlantic/South_Georgia
+                        - Atlantic/St_Helena
+                        - Atlantic/Stanley
+                        - Australia/Adelaide
+                        - Australia/Brisbane
+                        - Australia/Broken_Hill
+                        - Australia/Darwin
+                        - Australia/Eucla
+                        - Australia/Hobart
+                        - Australia/Lindeman
+                        - Australia/Lord_Howe
+                        - Australia/Melbourne
+                        - Australia/Perth
+                        - Australia/Sydney
+                        - Europe/Amsterdam
+                        - Europe/Andorra
+                        - Europe/Astrakhan
+                        - Europe/Athens
+                        - Europe/Belgrade
+                        - Europe/Berlin
+                        - Europe/Bratislava
+                        - Europe/Brussels
+                        - Europe/Bucharest
+                        - Europe/Budapest
+                        - Europe/Busingen
+                        - Europe/Chisinau
+                        - Europe/Copenhagen
+                        - Europe/Dublin
+                        - Europe/Gibraltar
+                        - Europe/Guernsey
+                        - Europe/Helsinki
+                        - Europe/Isle_of_Man
+                        - Europe/Istanbul
+                        - Europe/Jersey
+                        - Europe/Kaliningrad
+                        - Europe/Kirov
+                        - Europe/Kyiv
+                        - Europe/Lisbon
+                        - Europe/Ljubljana
+                        - Europe/London
+                        - Europe/Luxembourg
+                        - Europe/Madrid
+                        - Europe/Malta
+                        - Europe/Mariehamn
+                        - Europe/Minsk
+                        - Europe/Monaco
+                        - Europe/Moscow
+                        - Europe/Oslo
+                        - Europe/Paris
+                        - Europe/Podgorica
+                        - Europe/Prague
+                        - Europe/Riga
+                        - Europe/Rome
+                        - Europe/Samara
+                        - Europe/San_Marino
+                        - Europe/Sarajevo
+                        - Europe/Saratov
+                        - Europe/Simferopol
+                        - Europe/Skopje
+                        - Europe/Sofia
+                        - Europe/Stockholm
+                        - Europe/Tallinn
+                        - Europe/Tirane
+                        - Europe/Ulyanovsk
+                        - Europe/Vaduz
+                        - Europe/Vatican
+                        - Europe/Vienna
+                        - Europe/Vilnius
+                        - Europe/Volgograd
+                        - Europe/Warsaw
+                        - Europe/Zagreb
+                        - Europe/Zurich
+                        - Indian/Antananarivo
+                        - Indian/Chagos
+                        - Indian/Christmas
+                        - Indian/Cocos
+                        - Indian/Comoro
+                        - Indian/Kerguelen
+                        - Indian/Mahe
+                        - Indian/Maldives
+                        - Indian/Mauritius
+                        - Indian/Mayotte
+                        - Indian/Reunion
+                        - Pacific/Apia
+                        - Pacific/Auckland
+                        - Pacific/Bougainville
+                        - Pacific/Chatham
+                        - Pacific/Chuuk
+                        - Pacific/Easter
+                        - Pacific/Efate
+                        - Pacific/Fakaofo
+                        - Pacific/Fiji
+                        - Pacific/Funafuti
+                        - Pacific/Galapagos
+                        - Pacific/Gambier
+                        - Pacific/Guadalcanal
+                        - Pacific/Guam
+                        - Pacific/Honolulu
+                        - Pacific/Kanton
+                        - Pacific/Kiritimati
+                        - Pacific/Kosrae
+                        - Pacific/Kwajalein
+                        - Pacific/Majuro
+                        - Pacific/Marquesas
+                        - Pacific/Midway
+                        - Pacific/Nauru
+                        - Pacific/Niue
+                        - Pacific/Norfolk
+                        - Pacific/Noumea
+                        - Pacific/Pago_Pago
+                        - Pacific/Palau
+                        - Pacific/Pitcairn
+                        - Pacific/Pohnpei
+                        - Pacific/Port_Moresby
+                        - Pacific/Rarotonga
+                        - Pacific/Saipan
+                        - Pacific/Tahiti
+                        - Pacific/Tarawa
+                        - Pacific/Tongatapu
+                        - Pacific/Wake
+                        - Pacific/Wallis
+                        - UTC
+                    city:
+                      type: string
+                      description: 'Must not be greater than 100 characters.'
+                      example: sipfqyniwoqkxoqmqztrraaei
+                      nullable: true
+                    zip_code:
+                      type: string
+                      description: 'Must not be greater than 20 characters.'
+                      example: cvlwjh
+                      nullable: true
+                    additional_information:
+                      type: string
+                      description: 'Must not be greater than 1024 characters.'
+                      example: pqidxjf
+                      nullable: true
+                box:
+                  type: object
+                  description: ''
+                  example: null
+                  nullable: false
+                  properties:
+                    recipient:
+                      type: object
+                      description: 'This field is required when <code>box</code> is present.'
+                      example: null
+                      nullable: false
+                      properties:
+                        name:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 3 characters. Must not be greater than 100 characters.'
+                          example: fvzwzdfklpkdvrrjiifbesfk
+                          nullable: false
+                        address:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 6 characters. Must not be greater than 255 characters.'
+                          example: tttdqjjaflmwugos
+                          nullable: false
+                        city:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 6 characters. Must not be greater than 100 characters.'
+                          example: ze
+                          nullable: false
+                        zip_code:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 3 characters. Must not be greater than 20 characters.'
+                          example: xxxesuwlwqwcs
+                          nullable: false
+                        identification_type:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present.'
+                          example: PASSPORT
+                          nullable: false
+                          enum:
+                            - DNI
+                            - ID
+                            - PASSPORT
+                        identification_number:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 4 characters. Must not be greater than 20 characters.'
+                          example: qaeu
+                          nullable: false
+                        phone:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present. Must be at least 8 characters. Must not be greater than 40 characters.'
+                          example: ukgzevuvvrfsoypg
+                          nullable: false
+                        additional_information:
+                          type: string
+                          description: 'Must not be greater than 1024 characters.'
+                          example: tyxnhiinvnmylehopb
+                          nullable: true
+                    connection_settings:
+                      type: object
+                      description: 'This field is required when <code>box</code> is present.'
+                      example: null
+                      nullable: false
+                      properties:
+                        connection_type:
+                          type: string
+                          description: 'This field is required when <code>box</code> is present.'
+                          example: ETHERNET
+                          nullable: false
+                          enum:
+                            - WIFI
+                            - ETHERNET
+                        network:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>. Must not be greater than 255 characters.'
+                          example: tecxxs
+                          nullable: false
+                        password:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>. Must not be greater than 255 characters.'
+                          example: "faiP]=(ge69'"
+                          nullable: false
+                        type_of_network:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>.'
+                          example: WEP
+                          nullable: false
+                          enum:
+                            - WEP
+                            - WPA2
+                        ip_protocol_assignment:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>.'
+                          example: Static
+                          nullable: false
+                          enum:
+                            - DHCP
+                            - Static
+                        ip_address:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.'
+                          example: null
+                          nullable: false
+                        dns_1:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.'
+                          example: null
+                          nullable: false
+                        dns_2:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.'
+                          example: null
+                          nullable: false
+                        netmask:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.'
+                          example: null
+                          nullable: false
+                        gateway:
+                          type: string
+                          description: 'This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.'
+                          example: null
+                          nullable: false
+                        ntp_address:
+                          type: string
+                          description: ''
+                          example: voluptatem
+                          nullable: true
+                        proxy_address:
+                          type: string
+                          description: 'This field is required when <code>proxy_port</code> is present.'
+                          example: aliquam
+                          nullable: true
+                        proxy_port:
+                          type: string
+                          description: 'This field is required when <code>proxy_address</code> is present.'
+                          example: null
+                          nullable: true
+                        additional_information:
+                          type: string
+                          description: 'Must not be greater than 1024 characters.'
+                          example: qjzybxschlooesxpaijvtq
+                          nullable: true
+              required:
+                - name
+                - acknowledgement
+                - account_id
+  '/v2/zones/{id}':
+    get:
+      summary: 'Return a zone by its ID'
+      operationId: returnAZoneByItsID
+      description: 'Return a single zone by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Zones
+    patch:
+      summary: 'Update a zone'
+      operationId: updateAZone
+      description: 'Only values provided in the request will be updated.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 30120
+                    account_id: 19120
+                    account_name: "John's Bakery US"
+                    code: '207642'
+                    uuid: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                    name: 'Downtown Bakery'
+                    store_id: 26440
+                    storage_info:
+                      available: null
+                      required: null
+                      is_critical: false
+                    volume: 100
+                    has_volume_change_pending: false
+                    send_logs: false
+                    reset_state: false
+                    fudo_integration_id: null
+                    created_at: '2024-07-31T14:53:07+00:00'
+                    updated_at: '2024-07-31T14:53:07+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 30120
+                      account_id:
+                        type: integer
+                        example: 19120
+                      account_name:
+                        type: string
+                        example: "John's Bakery US"
+                      code:
+                        type: string
+                        example: '207642'
+                      uuid:
+                        type: string
+                        example: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                      name:
+                        type: string
+                        example: 'Downtown Bakery'
+                      store_id:
+                        type: integer
+                        example: 26440
+                      storage_info:
+                        type: object
+                        properties:
+                          available:
+                            type: string
+                            example: null
+                          required:
+                            type: string
+                            example: null
+                          is_critical:
+                            type: boolean
+                            example: false
+                      volume:
+                        type: integer
+                        example: 100
+                      has_volume_change_pending:
+                        type: boolean
+                        example: false
+                      send_logs:
+                        type: boolean
+                        example: false
+                      reset_state:
+                        type: boolean
+                        example: false
+                      fudo_integration_id:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+                      updated_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Zones
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: odvnoazxsgrugbabhxvtekv
+                  nullable: false
+    delete:
+      summary: 'Delete a zone'
+      operationId: deleteAZone
+      description: "This won't affect your subscription."
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        204:
+          description: Success
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Zones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: ''
+                  example: MUSICAL_DECISION
+                  nullable: false
+                  enum:
+                    - STORE_CLOSED
+                    - TECHNICAL_ISSUES
+                    - MUSICAL_DECISION
+              required:
+                - reason
+    post:
+      summary: 'Handle zone suspension status'
+      operationId: handleZoneSuspensionStatus
+      description: 'By providing the bool value, you can set or unset the suspension status for a zone.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 30120
+                    account_id: 19120
+                    account_name: "John's Bakery US"
+                    code: '207642'
+                    uuid: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                    name: 'Downtown Bakery'
+                    store_id: 26440
+                    storage_info:
+                      available: null
+                      required: null
+                      is_critical: false
+                    volume: 100
+                    has_volume_change_pending: false
+                    send_logs: false
+                    reset_state: false
+                    fudo_integration_id: null
+                    created_at: '2024-07-31T14:53:07+00:00'
+                    updated_at: '2024-07-31T14:53:07+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 30120
+                      account_id:
+                        type: integer
+                        example: 19120
+                      account_name:
+                        type: string
+                        example: "John's Bakery US"
+                      code:
+                        type: string
+                        example: '207642'
+                      uuid:
+                        type: string
+                        example: d1f91b09-f1f9-41d9-ad59-417f6b37766d
+                      name:
+                        type: string
+                        example: 'Downtown Bakery'
+                      store_id:
+                        type: integer
+                        example: 26440
+                      storage_info:
+                        type: object
+                        properties:
+                          available:
+                            type: string
+                            example: null
+                          required:
+                            type: string
+                            example: null
+                          is_critical:
+                            type: boolean
+                            example: false
+                      volume:
+                        type: integer
+                        example: 100
+                      has_volume_change_pending:
+                        type: boolean
+                        example: false
+                      send_logs:
+                        type: boolean
+                        example: false
+                      reset_state:
+                        type: boolean
+                        example: false
+                      fudo_integration_id:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+                      updated_at:
+                        type: string
+                        example: '2024-07-31T14:53:07+00:00'
+        402:
+          description: 'Subscription limit reached'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Plan limit reached'
+                  status_code: 402
+                properties:
+                  message:
+                    type: string
+                    example: 'Plan limit reached'
+                  status_code:
+                    type: integer
+                    example: 402
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+        409:
+          description: 'Suspension issue'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: "You can't set a suspension to an already suspended zone."
+                  status_code: 409
+                properties:
+                  message:
+                    type: string
+                    example: "You can't set a suspension to an already suspended zone."
+                  status_code:
+                    type: integer
+                    example: 409
+      tags:
+        - Zones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                suspended:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+              required:
+                - suspended
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the zone.'
+        example: 17351
+        required: true
+        schema:
+          type: integer
+  /v2/zones/smart/data:
+    post:
+      summary: 'Update a zone smart data'
+      operationId: updateAZoneSmartData
+      description: "It will update the zones provided in the request. It might involve 1 up to 100 zones at a time.\n<aside class=\"notice\">Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid\nit will return an error.</aside>"
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        204:
+          description: OK
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: 'Wrong Zone ID Provided'
+                    type: object
+                    example:
+                      message: '404 Not Found'
+                      status_code: 404
+                    properties:
+                      message:
+                        type: string
+                        example: '404 Not Found'
+                      status_code:
+                        type: integer
+                        example: 404
+                  -
+                    description: 'Wrong Credentials'
+                    type: object
+                    example:
+                      message: '404 Not Found'
+                      status_code: 404
+                    properties:
+                      message:
+                        type: string
+                        example: '404 Not Found'
+                      status_code:
+                        type: integer
+                        example: 404
+        422:
+          description: 'Non-valid payload request'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '422 Unprocessable Content'
+                  errors:
+                    data.zones.0.id:
+                      - 'The data.zones.0.id field is required.'
+                  status_code: 422
+                properties:
+                  message:
+                    type: string
+                    example: '422 Unprocessable Content'
+                  errors:
+                    type: object
+                    properties:
+                      data.zones.0.id:
+                        type: array
+                        example:
+                          - 'The data.zones.0.id field is required.'
+                        items:
+                          type: string
+                  status_code:
+                    type: integer
+                    example: 422
+      tags:
+        - Zones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider_key:
+                  type: string
+                  description: "The key of the integration you're using."
+                  example: fudo
+                  nullable: false
+                date:
+                  type: string
+                  description: 'The datetime whenever this information is valid from. It must follow the ISO8601'
+                  example: '2024-08-01T12:00:00Z'
+                  nullable: false
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties:
+                    zones:
+                      type: array
+                      description: 'Zones to update.'
+                      example: null
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: 'The Brandtrack Zone ID to update.'
+                            example: 123
+                            nullable: false
+                          current_occupation:
+                            type: integer
+                            description: 'A number with the occupation from 0 to 100. It is required if capacity and occupation are not provided.'
+                            example: null
+                            nullable: false
+                          current_capacity:
+                            type: integer
+                            description: 'It is required with the current_occupied, if provided. It represents the capacity of tables, persons, or whatever the integration measures.'
+                            example: 150
+                            nullable: false
+                          current_occupied:
+                            type: integer
+                            description: 'It is required with the current_capacity, if provided. It represents the occupation of tables, persons, or whatever the integration measures.'
+                            example: 75
+                            nullable: false
+                        required:
+                          - id
+              required:
+                - provider_key
+                - date
+                - data
+  /v2/groups:
+    get:
+      summary: 'List groups'
+      operationId: listGroups
+      description: 'Return a paginated list of groups available for the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page requested. Default to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page requested. Default to 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The number of items per page. Default to 25.'
+          example: 100
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page. Default to 25.'
+            example: 100
+            nullable: false
+        -
+          in: query
+          name: order_by
+          description: 'The field to order the results by. Default to id.'
+          example: id
+          required: false
+          schema:
+            type: string
+            description: 'The field to order the results by. Default to id.'
+            example: id
+            nullable: false
+        -
+          in: query
+          name: direction
+          description: 'The direction method to sort results. Default to asc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The direction method to sort results. Default to asc.'
+            example: desc
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Groups
+    post:
+      summary: 'Create a new group'
+      operationId: createANewGroup
+      description: 'Create a new group using the provided data.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 17351
+                    account_id: 19120
+                    music_profile_id: null
+                    name: Music
+                    analytics:
+                      data:
+                        players: 0
+                        announcements: 1
+                        mixes: 0
+                        radios: 0
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 17351
+                      account_id:
+                        type: integer
+                        example: 19120
+                      music_profile_id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: Music
+                      analytics:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              players:
+                                type: integer
+                                example: 0
+                              announcements:
+                                type: integer
+                                example: 1
+                              mixes:
+                                type: integer
+                                example: 0
+                              radios:
+                                type: integer
+                                example: 0
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                  status_code: 403
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+                  status_code:
+                    type: integer
+                    example: 403
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the accounts table.'
+                  example: 5
+                  nullable: true
+                music_profile_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the music_profiles table.'
+                  example: 9
+                  nullable: true
+                name:
+                  type: string
+                  description: ''
+                  example: ratione
+                  nullable: false
+              required:
+                - name
+  '/v2/groups/{id}':
+    get:
+      summary: 'Get a group by its ID'
+      operationId: getAGroupByItsID
+      description: 'Return a single group by its ID, if available to the authenticated user.'
+      parameters:
+        -
+          in: query
+          name: include
+          description: 'Any relation to be included, separated by commas. You can use: announcements, mixes, account.'
+          example: 'announcements,mixes'
+          required: false
+          schema:
+            type: string
+            description: 'Any relation to be included, separated by commas. You can use: announcements, mixes, account.'
+            example: 'announcements,mixes'
+            nullable: false
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Groups
+    patch:
+      summary: 'Update a group'
+      operationId: updateAGroup
+      description: 'Update a group with the data provided in the request.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 17351
+                    account_id: 19120
+                    music_profile_id: null
+                    name: Music
+                    analytics:
+                      data:
+                        players: 0
+                        announcements: 1
+                        mixes: 0
+                        radios: 0
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 17351
+                      account_id:
+                        type: integer
+                        example: 19120
+                      music_profile_id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: Music
+                      analytics:
+                        type: object
+                        properties:
+                          data:
+                            type: object
+                            properties:
+                              players:
+                                type: integer
+                                example: 0
+                              announcements:
+                                type: integer
+                                example: 1
+                              mixes:
+                                type: integer
+                                example: 0
+                              radios:
+                                type: integer
+                                example: 0
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the accounts table.'
+                  example: 5
+                  nullable: true
+                music_profile_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the music_profiles table.'
+                  example: 1
+                  nullable: true
+                name:
+                  type: string
+                  description: ''
+                  example: sed
+                  nullable: false
+              required:
+                - name
+    delete:
+      summary: 'Delete a group'
+      operationId: deleteAGroup
+      description: 'Delete a group using the ID. Any zone related will lose the access to the playlists and announcements immediately.'
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        204:
+          description: Success
+        404:
+          description: 'Wrong ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: '404 Not Found'
+                  status_code: 404
+                properties:
+                  message:
+                    type: string
+                    example: '404 Not Found'
+                  status_code:
+                    type: integer
+                    example: 404
+      tags:
+        - Groups
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the group.'
+        example: 17351
+        required: true
+        schema:
+          type: integer
+  /v2/roles:
+    get:
+      summary: 'List all roles'
+      operationId: listAllRoles
+      description: ''
+      parameters:
+        -
+          in: header
+          name: x-customer-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Roles
+  /business_categories:
+    get:
+      summary: 'List all business categories'
+      operationId: listAllBusinessCategories
+      description: 'Return all business categories available in the system.'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      key: retail
+                      parent_id: null
+                      name: Retail
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        key: retail
+                        parent_id: null
+                        name: Retail
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        key:
+                          type: string
+                          example: retail
+                        parent_id:
+                          type: string
+                          example: null
+                        name:
+                          type: string
+                          example: Retail
+      tags:
+        - Other
+      security: []
+  /partner/accounts/register:
+    post:
+      summary: 'Create account'
+      operationId: createAccount
+      description: 'It creates a new account based on the provided data. Also, create a user and sends the default email.'
+      parameters:
+        -
+          in: header
+          name: X-Partner-Key
+          description: ''
+          example: abc123
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  account_id: 1
+                  account_name: 'test account name'
+                  user_id: 1
+                  url: 'https://my.brandtrack.fm/login/token/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh'
+                properties:
+                  account_id:
+                    type: integer
+                    example: 1
+                  account_name:
+                    type: string
+                    example: 'test account name'
+                  user_id:
+                    type: integer
+                    example: 1
+                  url:
+                    type: string
+                    example: 'https://my.brandtrack.fm/login/token/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh'
+      tags:
+        - Partner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the account to create.'
+                  example: VetShop
+                  nullable: false
+                country:
+                  type: string
+                  description: 'The country in ISO-2 format.'
+                  example: US
+                  nullable: false
+                business_category_id:
+                  type: integer
+                  description: 'The business category id of the account.'
+                  example: 1
+                  nullable: false
+                email:
+                  type: string
+                  description: 'The email of the account owner.'
+                  example: john.doe@example.com
+                  nullable: false
+                firstname:
+                  type: string
+                  description: 'The firstname of the account owner.'
+                  example: John
+                  nullable: true
+                lastname:
+                  type: string
+                  description: 'The lastname of the account owner.'
+                  example: Doe
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: 'The phone number of the account owner.'
+                  example: '1234567890'
+                  nullable: false
+              required:
+                - name
+                - country
+                - email
+      security: []
+  '/partner/users/{id}/token':
+    post:
+      summary: 'Creates a new token for requested user.'
+      operationId: createsANewTokenForRequestedUser
+      description: 'It returns a new token for the user provided that lasts 1 hour and can be used only once.'
+      parameters:
+        -
+          in: header
+          name: X-Partner-Key
+          description: ''
+          example: abc123
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    user_id: 1482
+                    token: QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+                    created_at: '2025-02-07 10:27:21'
+                    expires_at: '2025-02-07 11:27:21'
+                    url: 'https://my.brandtrack.fm/login/token/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1482
+                      token:
+                        type: string
+                        example: QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF
+                      created_at:
+                        type: string
+                        example: '2025-02-07 10:27:21'
+                      expires_at:
+                        type: string
+                        example: '2025-02-07 11:27:21'
+                      url:
+                        type: string
+                        example: 'https://my.brandtrack.fm/login/token/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF'
+      tags:
+        - Partner
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Accounts
+    description: ''
+  -
+    name: Subscriptions
+    description: ''
+  -
+    name: Users
+    description: ''
+  -
+    name: Locations
+    description: ''
+  -
+    name: Zones
+    description: ''
+  -
+    name: Groups
+    description: ''
+  -
+    name: Roles
+    description: ''
+  -
+    name: Other
+    description: ''
+  -
+    name: Partner
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-customer-api-key
+      in: header
+      description: 'If are not sure about how to get your token feel free to contact our team.'
+security:
+  -
+    default: []
