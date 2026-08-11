@@ -193,6 +193,8 @@ apis:
   - type: APIReference
     url: https://developers.brandtrack.ai/
 common:
+- type: Overlay
+  url: overlays/brandtrack-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://developers.brandtrack.ai/
 - type: Documentation
