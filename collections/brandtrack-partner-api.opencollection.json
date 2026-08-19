@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts Partner API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/partner/accounts/register",
+            "headers": [
+              {
+                "name": "X-Partner-Key",
+                "value": "abc123"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It creates a new account based on the provided data. Also, create a user and sends the default email."
+        },
+        {
+          "info": {
+            "name": "Creates a new token for requested user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/partner/users/:id/token",
+            "headers": [
+              {
+                "name": "X-Partner-Key",
+                "value": "abc123"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ]
+          },
+          "docs": "It returns a new token for the user provided that lasts 1 hour and can be used only once."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

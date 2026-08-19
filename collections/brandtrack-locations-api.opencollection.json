@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts Locations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/locations",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of groups available for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/locations",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is designed to by used by My Brandtrack users."
+        },
+        {
+          "info": {
+            "name": "Return a location by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/locations/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "26440",
+                "type": "path",
+                "description": "The ID of the location."
+              }
+            ]
+          },
+          "docs": "Return a single location by its ID, if available to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Update a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "api.brandtrack.fm/v2/locations/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "26440",
+                "type": "path",
+                "description": "The ID of the location."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Only values provided in the request will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "api.brandtrack.fm/v2/locations/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "26440",
+                "type": "path",
+                "description": "The ID of the location."
+              }
+            ]
+          },
+          "docs": "Delete a location using the ID. Any location with at least 1 zone related to, won't be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

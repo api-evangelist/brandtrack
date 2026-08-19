@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts Zones API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/zones",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of zones available for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/zones",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It has an acknowledgement of the creation of the zone. If set to true, the zone will be created even if it is\nover the limits of the account and the subscription will be updated as well. Be aware with it, because you\nmight update your subscription.\n<aside class=\"notice\">This endpoint might affect your subscription according to the parameters provided.</aside>"
+        },
+        {
+          "info": {
+            "name": "Return a zone by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/zones/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the zone."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a single zone by its ID, if available to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Handle zone suspension status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/zones/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the zone."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "By providing the bool value, you can set or unset the suspension status for a zone."
+        },
+        {
+          "info": {
+            "name": "Update a zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "api.brandtrack.fm/v2/zones/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the zone."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Only values provided in the request will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "api.brandtrack.fm/v2/zones/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the zone."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This won't affect your subscription."
+        },
+        {
+          "info": {
+            "name": "Update a zone smart data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/zones/smart/data",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It will update the zones provided in the request. It might involve 1 up to 100 zones at a time.\n<aside class=\"notice\">Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid\nit will return an error.</aside>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

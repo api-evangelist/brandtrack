@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts Groups API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/groups",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of groups available for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a new group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/groups",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new group using the provided data."
+        },
+        {
+          "info": {
+            "name": "Get a group by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/groups/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the group."
+              },
+              {
+                "name": "include",
+                "value": "announcements,mixes",
+                "type": "query",
+                "description": "Any relation to be included, separated by commas. You can use: announcements, mixes, account."
+              }
+            ]
+          },
+          "docs": "Return a single group by its ID, if available to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Update a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "api.brandtrack.fm/v2/groups/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a group with the data provided in the request."
+        },
+        {
+          "info": {
+            "name": "Delete a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "api.brandtrack.fm/v2/groups/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "17351",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ]
+          },
+          "docs": "Delete a group using the ID. Any zone related will lose the access to the playlists and announcements immediately."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/accounts",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of accounts available for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get an account by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/accounts/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "19120",
+                "type": "path",
+                "description": "The ID of the account."
+              },
+              {
+                "name": "using_account_id",
+                "value": "0",
+                "type": "query",
+                "description": "Set this ID to filter records only to this particular account. By not providing anything, results from all accounts will be returned. Default to null."
+              }
+            ]
+          },
+          "docs": "Return a single account by its ID, if available to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Update an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "api.brandtrack.fm/v2/accounts/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "19120",
+                "type": "path",
+                "description": "The ID of the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Only values provided in the request will be updated."
+        },
+        {
+          "info": {
+            "name": "Handle account suspension status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/accounts/:id/suspension",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "19120",
+                "type": "path",
+                "description": "The ID of the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "By providing the bool value, you can set or unset the suspension status for an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

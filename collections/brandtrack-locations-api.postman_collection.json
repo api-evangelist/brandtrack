@@ -1,0 +1,755 @@
+{
+  "item": [
+    {
+      "id": "14c66617-9ec3-466b-a883-7f0e6695a276",
+      "name": "Locations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0db2262-82c6-419d-a103-2f9592cd037a",
+          "name": "List locations",
+          "request": {
+            "name": "List locations",
+            "description": {
+              "content": "Return a paginated list of groups available for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page requested. Default to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "The number of items per page. Default to 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "The field to order the results by. Default to id."
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "The direction method to sort results. Default to asc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32500a2a-c6ea-4524-8288-db09ee3ecd75",
+          "name": "Create a location",
+          "request": {
+            "name": "Create a location",
+            "description": {
+              "content": "This endpoint is designed to by used by My Brandtrack users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip_code\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"manager\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additional_information\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b963c1b3-dc41-416d-9414-6782b65bab20",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ojpraplsvntmeldpdkmp\",\n  \"country\": \"cl\",\n  \"city\": \"qdddkgyxbjgquhfvasy\",\n  \"address\": \"hveyqazuvntjbbskxezycdto\",\n  \"zip_code\": \"jvxfuvlanyjkwggywkw\",\n  \"phone_number\": \"blfyghkjmrvkjofiajevi\",\n  \"email\": \"lindsey52@example.com\",\n  \"manager\": \"sfkrcbygpvexfpx\",\n  \"type\": \"franchise\",\n  \"additional_information\": \"aqlgoitxfc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 26440,\n    \"account_id\": 19120,\n    \"name\": \"Downtown Bakery\",\n    \"country\": \"US\",\n    \"address\": \"176 Berry St, Brooklyn\",\n    \"phone_number\": \"11002929\",\n    \"email\": \"john.doe@brandtrack.fm\",\n    \"manager\": \"John Doe\",\n    \"created_at\": \"2024-07-31T14:38:34+00:00\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"type\": \"own\",\n    \"city\": \"New York\",\n    \"zip_code\": \"11249\",\n    \"additional_information\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cb886c6-7587-4fb1-8b4d-217c08977e33",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ojpraplsvntmeldpdkmp\",\n  \"country\": \"cl\",\n  \"city\": \"qdddkgyxbjgquhfvasy\",\n  \"address\": \"hveyqazuvntjbbskxezycdto\",\n  \"zip_code\": \"jvxfuvlanyjkwggywkw\",\n  \"phone_number\": \"blfyghkjmrvkjofiajevi\",\n  \"email\": \"lindsey52@example.com\",\n  \"manager\": \"sfkrcbygpvexfpx\",\n  \"type\": \"franchise\",\n  \"additional_information\": \"aqlgoitxfc\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"This action is unauthorized.\",\n  \"status_code\": 403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a90bc73-a5a5-49a4-a31e-05fe5532f9cf",
+          "name": "Return a location by its ID",
+          "request": {
+            "name": "Return a location by its ID",
+            "description": {
+              "content": "Return a single location by its ID, if available to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8cfe3b3-cec9-414a-8053-c2e58af61498",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba9ad796-52eb-40bd-8397-985cd56f87f5",
+          "name": "Update a location",
+          "request": {
+            "name": "Update a location",
+            "description": {
+              "content": "Only values provided in the request will be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip_code\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"manager\": \"<string>\",\n  \"additional_information\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "33419743-3049-494c-bf0d-ae59d264a38b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"xsw\",\n  \"country\": \"ri\",\n  \"city\": \"fkvyexjhhenjgyxsfhy\",\n  \"address\": \"cndqkxrmxtzntfi\",\n  \"zip_code\": \"pmczqek\",\n  \"phone_number\": \"jjofnzimjvjdmni\",\n  \"email\": \"collins.joesph@example.com\",\n  \"manager\": \"pqbscnlbozwmfvhquiwfkly\",\n  \"additional_information\": \"ktwxipkm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 26440,\n    \"account_id\": 19120,\n    \"name\": \"Downtown Bakery\",\n    \"country\": \"US\",\n    \"address\": \"176 Berry St, Brooklyn\",\n    \"phone_number\": \"11002929\",\n    \"email\": \"john.doe@brandtrack.fm\",\n    \"manager\": \"John Doe\",\n    \"created_at\": \"2024-07-31T14:38:34+00:00\",\n    \"timezone\": \"America/Los_Angeles\",\n    \"type\": \"own\",\n    \"city\": \"New York\",\n    \"zip_code\": \"11249\",\n    \"additional_information\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14494a6b-3a95-458a-b6a7-c0a114befad1",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"xsw\",\n  \"country\": \"ri\",\n  \"city\": \"fkvyexjhhenjgyxsfhy\",\n  \"address\": \"cndqkxrmxtzntfi\",\n  \"zip_code\": \"pmczqek\",\n  \"phone_number\": \"jjofnzimjvjdmni\",\n  \"email\": \"collins.joesph@example.com\",\n  \"manager\": \"pqbscnlbozwmfvhquiwfkly\",\n  \"additional_information\": \"ktwxipkm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a835a2f-af33-40cb-9db2-6a5e5fc9c9b3",
+          "name": "Delete a location",
+          "request": {
+            "name": "Delete a location",
+            "description": {
+              "content": "Delete a location using the ID. Any location with at least 1 zone related to, won't be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80bb2841-98d4-40cd-80d7-30af486c9020",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d95ce17c-0f16-4ff4-b7d7-010b0f2ab7be",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "api.brandtrack.fm",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-customer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c7ce4ce-e0ae-41e2-b11e-802620f953c6",
+    "name": "Brandtrack API Documentation Accounts Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the official documentation for the Brandtrack API.",
+      "type": "text/plain"
+    }
+  }
+}

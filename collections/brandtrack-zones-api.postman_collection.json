@@ -1,0 +1,1390 @@
+{
+  "item": [
+    {
+      "id": "41759834-23ec-44b2-9f9e-a912a6dc2230",
+      "name": "Zones",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "97dc8d85-f9a5-4031-a2b7-c926be47fd78",
+          "name": "List zones",
+          "request": {
+            "name": "List zones",
+            "description": {
+              "content": "Return a paginated list of zones available for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page requested. Default to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "The number of items per page. Default to 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "The field to order the results by. Default to id."
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "The direction method to sort results. Default to asc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b837771-83cd-4d61-8089-c279b5166123",
+          "name": "Create a zone",
+          "request": {
+            "name": "Create a zone",
+            "description": {
+              "content": "It has an acknowledgement of the creation of the zone. If set to true, the zone will be created even if it is\nover the limits of the account and the subscription will be updated as well. Be aware with it, because you\nmight update your subscription.\n<aside class=\"notice\">This endpoint might affect your subscription according to the parameters provided.</aside>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"acknowledgement\": \"<boolean>\",\n  \"account_id\": \"<string>\",\n  \"normalization_type\": \"<string>\",\n  \"smart_integration_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"store_id\": \"<string>\",\n  \"store\": {\n    \"account_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"type\": \"<string>\",\n    \"address\": \"<string>\",\n    \"phone_number\": \"<string>\",\n    \"email\": \"<string>\",\n    \"manager\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"city\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"additional_information\": \"<string>\"\n  },\n  \"box\": {\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"identification_type\": \"<string>\",\n      \"identification_number\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"additional_information\": \"<string>\"\n    },\n    \"connection_settings\": {\n      \"connection_type\": \"<string>\",\n      \"network\": \"<string>\",\n      \"password\": \"<string>\",\n      \"type_of_network\": \"<string>\",\n      \"ip_protocol_assignment\": \"<string>\",\n      \"ip_address\": \"<string>\",\n      \"dns_1\": \"<string>\",\n      \"dns_2\": \"<string>\",\n      \"netmask\": \"<string>\",\n      \"gateway\": \"<string>\",\n      \"ntp_address\": \"<string>\",\n      \"proxy_address\": \"<string>\",\n      \"proxy_port\": \"<string>\",\n      \"additional_information\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cca94aed-ffa6-421f-b133-d5e77a1a6f82",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"wksbjvmkcdvigzoocmgbmak\",\n  \"acknowledgement\": false,\n  \"account_id\": \"dolores\",\n  \"normalization_type\": \"2020\",\n  \"smart_integration_ids\": [\n    \"ittbqvsmn\"\n  ],\n  \"store_id\": \"<string>\",\n  \"store\": {\n    \"account_id\": \"<string>\",\n    \"name\": \"nakazflogfmasszhyfusegkj\",\n    \"country\": \"ty\",\n    \"type\": \"franchise\",\n    \"address\": \"eeqr\",\n    \"phone_number\": \"smunsajmopwln\",\n    \"email\": \"heaney.clair@example.org\",\n    \"manager\": \"ulbq\",\n    \"timezone\": \"America/Argentina/San_Luis\",\n    \"city\": \"sipfqyniwoqkxoqmqztrraaei\",\n    \"zip_code\": \"cvlwjh\",\n    \"additional_information\": \"pqidxjf\"\n  },\n  \"box\": {\n    \"recipient\": {\n      \"name\": \"fvzwzdfklpkdvrrjiifbesfk\",\n      \"address\": \"tttdqjjaflmwugos\",\n      \"city\": \"ze\",\n      \"zip_code\": \"xxxesuwlwqwcs\",\n      \"identification_type\": \"PASSPORT\",\n      \"identification_number\": \"qaeu\",\n      \"phone\": \"ukgzevuvvrfsoypg\",\n      \"additional_information\": \"tyxnhiinvnmylehopb\"\n    },\n    \"connection_settings\": {\n      \"connection_type\": \"ETHERNET\",\n      \"network\": \"tecxxs\",\n      \"password\": \"faiP]=(ge69'\",\n      \"type_of_network\": \"WEP\",\n      \"ip_protocol_assignment\": \"Static\",\n      \"ip_address\": \"<string>\",\n      \"dns_1\": \"<string>\",\n      \"dns_2\": \"<string>\",\n      \"netmask\": \"<string>\",\n      \"gateway\": \"<string>\",\n      \"ntp_address\": \"voluptatem\",\n      \"proxy_address\": \"aliquam\",\n      \"proxy_port\": null,\n      \"additional_information\": \"qjzybxschlooesxpaijvtq\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 30120,\n    \"account_id\": 19120,\n    \"account_name\": \"John's Bakery US\",\n    \"code\": \"207642\",\n    \"uuid\": \"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\n    \"name\": \"Downtown Bakery\",\n    \"store_id\": 26440,\n    \"storage_info\": {\n      \"available\": \"string\",\n      \"required\": \"string\",\n      \"is_critical\": false\n    },\n    \"volume\": 100,\n    \"has_volume_change_pending\": false,\n    \"send_logs\": false,\n    \"reset_state\": false,\n    \"fudo_integration_id\": \"string\",\n    \"created_at\": \"2024-07-31T14:53:07+00:00\",\n    \"updated_at\": \"2024-07-31T14:53:07+00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8507750-dca0-4010-a958-c4fc81eef628",
+              "name": "Wrong Store ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"wksbjvmkcdvigzoocmgbmak\",\n  \"acknowledgement\": false,\n  \"account_id\": \"dolores\",\n  \"normalization_type\": \"2020\",\n  \"smart_integration_ids\": [\n    \"ittbqvsmn\"\n  ],\n  \"store_id\": \"<string>\",\n  \"store\": {\n    \"account_id\": \"<string>\",\n    \"name\": \"nakazflogfmasszhyfusegkj\",\n    \"country\": \"ty\",\n    \"type\": \"franchise\",\n    \"address\": \"eeqr\",\n    \"phone_number\": \"smunsajmopwln\",\n    \"email\": \"heaney.clair@example.org\",\n    \"manager\": \"ulbq\",\n    \"timezone\": \"America/Argentina/San_Luis\",\n    \"city\": \"sipfqyniwoqkxoqmqztrraaei\",\n    \"zip_code\": \"cvlwjh\",\n    \"additional_information\": \"pqidxjf\"\n  },\n  \"box\": {\n    \"recipient\": {\n      \"name\": \"fvzwzdfklpkdvrrjiifbesfk\",\n      \"address\": \"tttdqjjaflmwugos\",\n      \"city\": \"ze\",\n      \"zip_code\": \"xxxesuwlwqwcs\",\n      \"identification_type\": \"PASSPORT\",\n      \"identification_number\": \"qaeu\",\n      \"phone\": \"ukgzevuvvrfsoypg\",\n      \"additional_information\": \"tyxnhiinvnmylehopb\"\n    },\n    \"connection_settings\": {\n      \"connection_type\": \"ETHERNET\",\n      \"network\": \"tecxxs\",\n      \"password\": \"faiP]=(ge69'\",\n      \"type_of_network\": \"WEP\",\n      \"ip_protocol_assignment\": \"Static\",\n      \"ip_address\": \"<string>\",\n      \"dns_1\": \"<string>\",\n      \"dns_2\": \"<string>\",\n      \"netmask\": \"<string>\",\n      \"gateway\": \"<string>\",\n      \"ntp_address\": \"voluptatem\",\n      \"proxy_address\": \"aliquam\",\n      \"proxy_port\": null,\n      \"additional_information\": \"qjzybxschlooesxpaijvtq\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0bfa5ba-2365-4625-992f-1f3db652d908",
+          "name": "Return a zone by its ID",
+          "request": {
+            "name": "Return a zone by its ID",
+            "description": {
+              "content": "Return a single zone by its ID, if available to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page requested. Default to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "The number of items per page. Default to 25."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "The field to order the results by. Default to id."
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "The direction method to sort results. Default to asc."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the zone."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62ae2d02-4fde-42c0-afc3-2b20964affae",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "id"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f16ddaaf-935b-4d6d-b3cc-0a905f3d44ba",
+          "name": "Update a zone",
+          "request": {
+            "name": "Update a zone",
+            "description": {
+              "content": "Only values provided in the request will be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the zone."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "09d8c155-8436-4ee2-bfcf-7e7c6968adbc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"odvnoazxsgrugbabhxvtekv\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 30120,\n    \"account_id\": 19120,\n    \"account_name\": \"John's Bakery US\",\n    \"code\": \"207642\",\n    \"uuid\": \"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\n    \"name\": \"Downtown Bakery\",\n    \"store_id\": 26440,\n    \"storage_info\": {\n      \"available\": \"string\",\n      \"required\": \"string\",\n      \"is_critical\": false\n    },\n    \"volume\": 100,\n    \"has_volume_change_pending\": false,\n    \"send_logs\": false,\n    \"reset_state\": false,\n    \"fudo_integration_id\": \"string\",\n    \"created_at\": \"2024-07-31T14:53:07+00:00\",\n    \"updated_at\": \"2024-07-31T14:53:07+00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "225a3336-2660-41ad-9db1-e46f6c78a2ae",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"odvnoazxsgrugbabhxvtekv\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd147aed-72de-4c8a-8c94-29e754611d15",
+          "name": "Delete a zone",
+          "request": {
+            "name": "Delete a zone",
+            "description": {
+              "content": "This won't affect your subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the zone."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28f26095-afe6-46ad-b636-30a4515513e1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"MUSICAL_DECISION\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a7634031-a9e9-4170-96ec-3eaa4dc0b4df",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"MUSICAL_DECISION\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cadac74-ade7-4b72-b93f-cce77e5621a3",
+          "name": "Handle zone suspension status",
+          "request": {
+            "name": "Handle zone suspension status",
+            "description": {
+              "content": "By providing the bool value, you can set or unset the suspension status for a zone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the zone."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"suspended\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a283b57-3602-476e-a577-ca66a3bc8530",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspended\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": 30120,\n    \"account_id\": 19120,\n    \"account_name\": \"John's Bakery US\",\n    \"code\": \"207642\",\n    \"uuid\": \"d1f91b09-f1f9-41d9-ad59-417f6b37766d\",\n    \"name\": \"Downtown Bakery\",\n    \"store_id\": 26440,\n    \"storage_info\": {\n      \"available\": \"string\",\n      \"required\": \"string\",\n      \"is_critical\": false\n    },\n    \"volume\": 100,\n    \"has_volume_change_pending\": false,\n    \"send_logs\": false,\n    \"reset_state\": false,\n    \"fudo_integration_id\": \"string\",\n    \"created_at\": \"2024-07-31T14:53:07+00:00\",\n    \"updated_at\": \"2024-07-31T14:53:07+00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38b578f3-869a-4f47-a2df-3ab6c9c9a1fe",
+              "name": "Subscription limit reached",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspended\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan limit reached\",\n  \"status_code\": 402\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef30fbd6-a57d-466f-8f45-a13d3e395a9c",
+              "name": "Wrong ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspended\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3ddcf41-b3fe-43b8-bbc7-25c281e18929",
+              "name": "Suspension issue",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the zone."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspended\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You can't set a suspension to an already suspended zone.\",\n  \"status_code\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ed51b1c-c440-4e97-b081-4de26e5dc1ce",
+          "name": "Update a zone smart data",
+          "request": {
+            "name": "Update a zone smart data",
+            "description": {
+              "content": "It will update the zones provided in the request. It might involve 1 up to 100 zones at a time.\n<aside class=\"notice\">Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid\nit will return an error.</aside>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "zones",
+                "smart",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-customer-api-key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider_key\": \"<string>\",\n  \"date\": \"<string>\",\n  \"data\": {\n    \"zones\": [\n      {\n        \"id\": \"<integer>\",\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": \"<integer>\",\n        \"current_occupied\": \"<integer>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": \"<integer>\",\n        \"current_occupied\": \"<integer>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2b18248-79ee-4e79-9156-c43c13595989",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    "smart",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider_key\": \"fudo\",\n  \"date\": \"2024-08-01T12:00:00Z\",\n  \"data\": {\n    \"zones\": [\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      },\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4c2f5ff-7aa1-4c6a-9f4e-3bfd481ccafd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    "smart",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider_key\": \"fudo\",\n  \"date\": \"2024-08-01T12:00:00Z\",\n  \"data\": {\n    \"zones\": [\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      },\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"404 Not Found\",\n  \"status_code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f72171e-496b-4903-86f5-22e0dc0fd17b",
+              "name": "Non-valid payload request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "zones",
+                    "smart",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-customer-api-key",
+                    "value": "{YOUR_AUTH_KEY}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider_key\": \"fudo\",\n  \"date\": \"2024-08-01T12:00:00Z\",\n  \"data\": {\n    \"zones\": [\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      },\n      {\n        \"id\": 123,\n        \"current_occupation\": \"<integer>\",\n        \"current_capacity\": 150,\n        \"current_occupied\": 75\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"422 Unprocessable Content\",\n  \"errors\": {\n    \"data.zones.0.id\": [\n      \"The data.zones.0.id field is required.\"\n    ]\n  },\n  \"status_code\": 422\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "api.brandtrack.fm",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-customer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "03f257bb-2297-46d7-aed8-a915f2945465",
+    "name": "Brandtrack API Documentation Accounts Zones API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the official documentation for the Brandtrack API.",
+      "type": "text/plain"
+    }
+  }
+}

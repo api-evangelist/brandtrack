@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "01f32971-39ac-461d-b367-d53fcf607e10",
+      "name": "Partner",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bec14bc-e823-460d-b66f-46346e2824b4",
+          "name": "Create account",
+          "request": {
+            "name": "Create account",
+            "description": {
+              "content": "It creates a new account based on the provided data. Also, create a user and sends the default email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "accounts",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Partner-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"email\": \"<string>\",\n  \"business_category_id\": \"<integer>\",\n  \"firstname\": \"<string>\",\n  \"lastname\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4317900-1198-4248-abf2-1242c456e0c6",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "accounts",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Partner-Key",
+                    "value": "abc123",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"VetShop\",\n  \"country\": \"US\",\n  \"email\": \"john.doe@example.com\",\n  \"business_category_id\": 1,\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"phone_number\": \"1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": 1,\n  \"account_name\": \"test account name\",\n  \"user_id\": 1,\n  \"url\": \"https://my.brandtrack.fm/login/token/jnli2jphNEn2G8wvAlPBkXdaULoHzgyh\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fc9dbff-9166-4849-b053-8e19766933a2",
+          "name": "Creates a new token for requested user.",
+          "request": {
+            "name": "Creates a new token for requested user.",
+            "description": {
+              "content": "It returns a new token for the user provided that lasts 1 hour and can be used only once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partner",
+                "users",
+                ":id",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Partner-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86539086-ff24-463e-aae6-dac29b593335",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partner",
+                    "users",
+                    ":id",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-customer-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Partner-Key",
+                    "value": "abc123",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"user_id\": 1482,\n    \"token\": \"QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF\",\n    \"created_at\": \"2025-02-07 10:27:21\",\n    \"expires_at\": \"2025-02-07 11:27:21\",\n    \"url\": \"https://my.brandtrack.fm/login/token/QY2Iqf10lMYRxXToMoqKqwD6wTiPx4EF\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "api.brandtrack.fm",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-customer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "337497e3-9250-4cec-ab08-9709a6b8c400",
+    "name": "Brandtrack API Documentation Accounts Partner API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the official documentation for the Brandtrack API.",
+      "type": "text/plain"
+    }
+  }
+}

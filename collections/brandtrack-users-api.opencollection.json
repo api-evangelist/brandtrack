@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Brandtrack API Documentation Accounts Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-customer-api-key",
+      "value": "{{x-customer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/users",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of users available for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Invites a user to the platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/users",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It will send automatically an email to the provided email address with a unique link to setup the user's account."
+        },
+        {
+          "info": {
+            "name": "Get a user by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "api.brandtrack.fm/v2/users/:id",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "18782",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Return a single user by its ID, if available to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create temporary auth token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/users/:id/token",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "18782",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page requested. Default to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "100",
+                "type": "query",
+                "description": "The number of items per page. Default to 25."
+              },
+              {
+                "name": "order_by",
+                "value": "id",
+                "type": "query",
+                "description": "The field to order the results by. Default to id."
+              },
+              {
+                "name": "direction",
+                "value": "desc",
+                "type": "query",
+                "description": "The direction method to sort results. Default to asc."
+              }
+            ]
+          },
+          "docs": "Create a one-time token that allows to access to the account by opening the link provided.\nIt lasts only 1 hour and any attempting to use this token after 1 hour will result in a 401 Unauthorized response."
+        },
+        {
+          "info": {
+            "name": "Handle user suspension status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "api.brandtrack.fm/v2/users/:id/suspension",
+            "headers": [
+              {
+                "name": "x-customer-api-key",
+                "value": "{YOUR_AUTH_KEY}"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "13",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "By providing the bool value, you can set or unset the suspension status for a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

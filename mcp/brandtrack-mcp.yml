@@ -2,12 +2,11 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/brandtrack-openapi-original.yml + https://api.brandtrack.fm/.well-known/oauth-protected-resource
-evidence: >-
-  api.brandtrack.fm publishes RFC 8414/9728 OAuth metadata declaring a single "mcp"
-  scope and an OAuth-guarded protected resource, strongly indicating an official MCP
-  access path. The MCP transport endpoint could not be confirmed publicly (probed
-  /mcp, /sse, /api/mcp, mcp.brandtrack.fm — none reachable), so the tool list below is
-  DERIVED from the REST OpenAPI operations, not verified against a live MCP server.
+evidence: api.brandtrack.fm publishes RFC 8414/9728 OAuth metadata declaring a single "mcp" scope and
+  an OAuth-guarded protected resource, strongly indicating an official MCP access path. The MCP transport
+  endpoint could not be confirmed publicly (probed /mcp, /sse, /api/mcp, mcp.brandtrack.fm — none reachable),
+  so the tool list below is DERIVED from the REST OpenAPI operations, not verified against a live MCP
+  server.
 server:
   name: brandtrack
   transport: http
@@ -66,3 +65,9 @@ tools:
 - name: partner_register_account
   description: Partner flow — create an account and its first user.
   source_operation: openapi/brandtrack-openapi-original.yml#createAccount
+deployment:
+  mode: none
+  verified: derived
+  tools: 16
+  checked: '2026-08-12'
+  source: catalog MCP census
