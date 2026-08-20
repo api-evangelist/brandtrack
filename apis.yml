@@ -54,6 +54,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -70,6 +72,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -101,7 +105,8 @@ apis:
   description: The Other API from Brandtrack — 1 operation(s) for other.
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
-  tags:
+  tags: []
+  tags_raw:
   - Other
   properties:
   - type: OpenAPI
@@ -150,6 +155,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -166,6 +173,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
