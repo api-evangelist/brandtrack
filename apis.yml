@@ -8,6 +8,18 @@ description: >-
   audit-ready licensing documentation. The Brandtrack v2 REST API manages accounts,
   subscriptions, users, locations, zones, groups, and roles, authenticated with an
   x-customer-api-key header, with a partner flow for provisioning customers.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
