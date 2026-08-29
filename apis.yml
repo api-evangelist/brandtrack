@@ -214,6 +214,9 @@ apis:
   - type: APIReference
     url: https://developers.brandtrack.ai/
 common:
+- type: CapabilityMap
+  url: capabilities/brandtrack-capability-edges.yml
+  name: Brandtrack Business Capability Map
 - type: Overlay
   url: overlays/brandtrack-openapi-overlay.yaml
 - type: DeveloperPortal
