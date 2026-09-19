@@ -102,6 +102,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -135,6 +137,8 @@ apis:
   humanURL: https://developers.brandtrack.ai/
   baseURL: https://api.brandtrack.fm/v2/
   tags:
+  - Partners
+  tags_raw:
   - Partner
   properties:
   - type: OpenAPI
