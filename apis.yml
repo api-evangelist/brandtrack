@@ -218,6 +218,8 @@ apis:
   - type: APIReference
     url: https://developers.brandtrack.ai/
 common:
+- type: Plans
+  url: plans/brandtrack-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/brandtrack-capability-edges.yml
   name: Brandtrack Business Capability Map

@@ -1,0 +1,48 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.brandtrack.ai/pricing
+sources:
+- https://www.brandtrack.ai/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Business background music subscription plans; monthly and annual (20% OFF) pricing shown. Add-ons
+  (Brandtrack Box, speakers, digital signage) have no listed prices.
+plan_count: 5
+currency: USD
+plans:
+- name: Essential (monthly)
+  price_text: $15 /month
+  price: 15
+  currency: USD
+  period: month
+  included_quota: 25 monthly credits (AI Ad Generator)
+- name: Advanced (monthly)
+  price_text: $30 /month
+  price: 30
+  currency: USD
+  period: month
+  included_quota: 50 monthly credits (AI Ad Generator)
+- name: Signature
+  price_text: Contact us
+  period: none
+  included_quota: 100 monthly credits (AI Ad Generator)
+- name: Essential (annual)
+  price_text: $12 /month
+  price: 12
+  currency: USD
+  period: month
+- name: Advanced (annual)
+  price_text: $24 /month
+  price: 24
+  currency: USD
+  period: month
+rate_limit_statements:
+- 25 monthly credits
+- 50 monthly credits
+- 100 monthly credits
