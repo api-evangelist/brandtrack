@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brandtrack API Documentation Accounts Locations API
+  title: Brandtrack API Documentation Locations API
   description: This is the official documentation for the Brandtrack API.
   version: 1.0.0
 servers:
@@ -26,7 +26,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -36,7 +35,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -46,7 +44,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -56,7 +53,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -175,55 +171,47 @@ paths:
                   type: string
                   description: Must not be greater than 100 characters.
                   example: ojpraplsvntmeldpdkmp
-                  nullable: false
                 country:
                   type: string
                   description: The <code>iso</code> of an existing record in the countries table. Must be 2 characters.
                   example: cl
-                  nullable: false
                 city:
                   type: string
                   description: Must not be greater than 100 characters.
                   example: qdddkgyxbjgquhfvasy
-                  nullable: false
                 address:
                   type: string
                   description: Must not be greater than 255 characters.
                   example: hveyqazuvntjbbskxezycdto
-                  nullable: false
                 zip_code:
                   type: string
                   description: Must not be greater than 20 characters.
                   example: jvxfuvlanyjkwggywkw
-                  nullable: false
                 phone_number:
                   type: string
                   description: Must not be greater than 40 characters.
                   example: blfyghkjmrvkjofiajevi
-                  nullable: false
                 email:
                   type: string
                   description: Must be a valid email address. Must not be greater than 100 characters.
                   example: lindsey52@example.com
-                  nullable: false
                 manager:
                   type: string
                   description: Must not be greater than 255 characters.
                   example: sfkrcbygpvexfpx
-                  nullable: false
                 type:
                   type: string
                   description: ''
                   example: franchise
-                  nullable: false
                   enum:
                   - own
                   - franchise
                 additional_information:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 1024 characters.
                   example: aqlgoitxfc
-                  nullable: true
               required:
               - name
               - country
@@ -382,47 +370,52 @@ paths:
                   type: string
                   description: Must not be greater than 100 characters.
                   example: xsw
-                  nullable: false
                 country:
                   type: string
                   description: The <code>iso</code> of an existing record in the countries table. Must be 2 characters.
                   example: ri
-                  nullable: false
                 city:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 100 characters.
                   example: fkvyexjhhenjgyxsfhy
-                  nullable: true
                 address:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 255 characters.
                   example: cndqkxrmxtzntfi
-                  nullable: true
                 zip_code:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 20 characters.
                   example: pmczqek
-                  nullable: true
                 phone_number:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 40 characters.
                   example: jjofnzimjvjdmni
-                  nullable: true
                 email:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must be a valid email address. Must not be greater than 100 characters.
                   example: collins.joesph@example.com
-                  nullable: true
                 manager:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 255 characters.
                   example: pqbscnlbozwmfvhquiwfkly
-                  nullable: true
                 additional_information:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Must not be greater than 1024 characters.
                   example: ktwxipkm
-                  nullable: true
     delete:
       summary: Delete a location
       operationId: deleteALocation

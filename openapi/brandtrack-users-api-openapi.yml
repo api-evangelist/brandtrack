@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brandtrack API Documentation Accounts Users API
+  title: Brandtrack API Documentation Users API
   description: This is the official documentation for the Brandtrack API.
   version: 1.0.0
 servers:
@@ -26,7 +26,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -36,7 +35,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -46,7 +44,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -56,7 +53,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -144,30 +140,27 @@ paths:
               type: object
               properties:
                 account_id:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   description: The account where this user will be created.
                   example: 19120
-                  nullable: true
                 email:
                   type: string
                   description: The email to be registered.
                   example: testexample@example.com
-                  nullable: false
                 firstname:
                   type: string
                   description: User's firstname.
                   example: John
-                  nullable: false
                 lastname:
                   type: string
                   description: User's lastname.
                   example: Doe
-                  nullable: false
                 role_id:
                   type: integer
                   description: The role to assign to the new user.
                   example: 74
-                  nullable: false
               required:
               - account_id
               - email
@@ -197,7 +190,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -207,7 +199,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -217,7 +208,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -227,7 +217,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -278,7 +267,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -288,7 +276,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -298,7 +285,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -308,7 +294,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -492,7 +477,6 @@ paths:
                   type: boolean
                   description: ''
                   example: false
-                  nullable: false
               required:
               - suspended
 components:

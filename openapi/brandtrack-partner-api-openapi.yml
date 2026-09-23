@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brandtrack API Documentation Accounts Partner API
+  title: Brandtrack API Documentation Partner API
   description: This is the official documentation for the Brandtrack API.
   version: 1.0.0
 servers:
@@ -61,37 +61,34 @@ paths:
                   type: string
                   description: The name of the account to create.
                   example: VetShop
-                  nullable: false
                 country:
                   type: string
                   description: The country in ISO-2 format.
                   example: US
-                  nullable: false
                 business_category_id:
                   type: integer
                   description: The business category id of the account.
                   example: 1
-                  nullable: false
                 email:
                   type: string
                   description: The email of the account owner.
                   example: john.doe@example.com
-                  nullable: false
                 firstname:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: The firstname of the account owner.
                   example: John
-                  nullable: true
                 lastname:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: The lastname of the account owner.
                   example: Doe
-                  nullable: true
                 phone_number:
                   type: string
                   description: The phone number of the account owner.
                   example: '1234567890'
-                  nullable: false
               required:
               - name
               - country
@@ -107,7 +104,7 @@ paths:
       schema:
         type: integer
     post:
-      summary: Creates a new token for requested user.
+      summary: Creates a new token for requested user
       operationId: createsANewTokenForRequestedUser
       description: It returns a new token for the user provided that lasts 1 hour and can be used only once.
       parameters:

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brandtrack API Documentation Accounts Zones API
+  title: Brandtrack API Documentation Zones API
   description: This is the official documentation for the Brandtrack API.
   version: 1.0.0
 servers:
@@ -26,7 +26,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -36,7 +35,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -46,7 +44,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -56,7 +53,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -75,7 +71,7 @@ paths:
 
         might update your subscription.
 
-        <aside class="notice">This endpoint might affect your subscription according to the parameters provided.</aside>'
+        This endpoint might affect your subscription according to the parameters provided.'
       parameters:
       - in: header
         name: x-customer-api-key
@@ -197,12 +193,10 @@ paths:
                   type: string
                   description: Must not be greater than 255 characters.
                   example: wksbjvmkcdvigzoocmgbmak
-                  nullable: false
                 normalization_type:
                   type: string
                   description: ''
                   example: '2020'
-                  nullable: false
                   enum:
                   - default
                   - '2020'
@@ -211,12 +205,10 @@ paths:
                   type: boolean
                   description: ''
                   example: false
-                  nullable: false
                 account_id:
                   type: string
                   description: ''
                   example: dolores
-                  nullable: false
                 smart_integration_ids:
                   type: array
                   description: Must not be greater than 20 characters.
@@ -228,61 +220,60 @@ paths:
                   type: string
                   description: This field is required when <code>store</code> is not present.  The <code>id</code> of an existing record in the stores table.
                   example: null
-                  nullable: false
                 store:
                   type: object
                   description: This field is required when <code>store_id</code> is not present.
                   example: null
-                  nullable: false
                   properties:
                     account_id:
                       type: string
                       description: This field is required when <code>store_id</code> is not present.  The <code>id</code> of an existing record in the accounts table.
                       example: null
-                      nullable: false
                     name:
                       type: string
                       description: This field is required when <code>store_id</code> is not present. Must not be greater than 100 characters.
                       example: nakazflogfmasszhyfusegkj
-                      nullable: false
                     country:
                       type: string
                       description: This field is required when <code>store_id</code> is not present.  The <code>iso</code> of an existing record in the countries table. Must be 2 characters.
                       example: ty
-                      nullable: false
                     type:
                       type: string
                       description: This field is required when <code>store_id</code> is not present.
                       example: franchise
-                      nullable: false
                       enum:
                       - own
                       - franchise
                     address:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 255 characters.
                       example: eeqr
-                      nullable: true
                     phone_number:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 40 characters.
                       example: smunsajmopwln
-                      nullable: true
                     email:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must be a valid email address. Must not be greater than 100 characters.
                       example: heaney.clair@example.org
-                      nullable: true
                     manager:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 255 characters.
                       example: ulbq
-                      nullable: true
                     timezone:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: ''
                       example: America/Argentina/San_Luis
-                      nullable: true
                       enum:
                       - Africa/Abidjan
                       - Africa/Accra
@@ -704,57 +695,53 @@ paths:
                       - Pacific/Wallis
                       - UTC
                     city:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 100 characters.
                       example: sipfqyniwoqkxoqmqztrraaei
-                      nullable: true
                     zip_code:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 20 characters.
                       example: cvlwjh
-                      nullable: true
                     additional_information:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       description: Must not be greater than 1024 characters.
                       example: pqidxjf
-                      nullable: true
                 box:
                   type: object
                   description: ''
                   example: null
-                  nullable: false
                   properties:
                     recipient:
                       type: object
                       description: This field is required when <code>box</code> is present.
                       example: null
-                      nullable: false
                       properties:
                         name:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 3 characters. Must not be greater than 100 characters.
                           example: fvzwzdfklpkdvrrjiifbesfk
-                          nullable: false
                         address:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 6 characters. Must not be greater than 255 characters.
                           example: tttdqjjaflmwugos
-                          nullable: false
                         city:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 6 characters. Must not be greater than 100 characters.
                           example: ze
-                          nullable: false
                         zip_code:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 3 characters. Must not be greater than 20 characters.
                           example: xxxesuwlwqwcs
-                          nullable: false
                         identification_type:
                           type: string
                           description: This field is required when <code>box</code> is present.
                           example: PASSPORT
-                          nullable: false
                           enum:
                           - DNI
                           - ID
@@ -763,28 +750,25 @@ paths:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 4 characters. Must not be greater than 20 characters.
                           example: qaeu
-                          nullable: false
                         phone:
                           type: string
                           description: This field is required when <code>box</code> is present. Must be at least 8 characters. Must not be greater than 40 characters.
                           example: ukgzevuvvrfsoypg
-                          nullable: false
                         additional_information:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: Must not be greater than 1024 characters.
                           example: tyxnhiinvnmylehopb
-                          nullable: true
                     connection_settings:
                       type: object
                       description: This field is required when <code>box</code> is present.
                       example: null
-                      nullable: false
                       properties:
                         connection_type:
                           type: string
                           description: This field is required when <code>box</code> is present.
                           example: ETHERNET
-                          nullable: false
                           enum:
                           - WIFI
                           - ETHERNET
@@ -792,17 +776,14 @@ paths:
                           type: string
                           description: This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>. Must not be greater than 255 characters.
                           example: tecxxs
-                          nullable: false
                         password:
                           type: string
                           description: This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>. Must not be greater than 255 characters.
                           example: faiP]=(ge69'
-                          nullable: false
                         type_of_network:
                           type: string
                           description: This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>.
                           example: WEP
-                          nullable: false
                           enum:
                           - WEP
                           - WPA2
@@ -810,7 +791,6 @@ paths:
                           type: string
                           description: This field is required when <code>box.connection_settings.connection_type</code> is <code>WIFI</code>.
                           example: Static
-                          nullable: false
                           enum:
                           - DHCP
                           - Static
@@ -818,47 +798,46 @@ paths:
                           type: string
                           description: This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.
                           example: null
-                          nullable: false
                         dns_1:
                           type: string
                           description: This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.
                           example: null
-                          nullable: false
                         dns_2:
                           type: string
                           description: This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.
                           example: null
-                          nullable: false
                         netmask:
                           type: string
                           description: This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.
                           example: null
-                          nullable: false
                         gateway:
                           type: string
                           description: This field is required when <code>box.connection_settings.ip_protocol_assignment</code> is <code>Static</code>.
                           example: null
-                          nullable: false
                         ntp_address:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: ''
                           example: voluptatem
-                          nullable: true
                         proxy_address:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: This field is required when <code>proxy_port</code> is present.
                           example: aliquam
-                          nullable: true
                         proxy_port:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: This field is required when <code>proxy_address</code> is present.
                           example: null
-                          nullable: true
                         additional_information:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: Must not be greater than 1024 characters.
                           example: qjzybxschlooesxpaijvtq
-                          nullable: true
               required:
               - name
               - acknowledgement
@@ -886,7 +865,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -896,7 +874,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -906,7 +883,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -916,7 +892,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -1067,7 +1042,6 @@ paths:
                   type: string
                   description: Must not be greater than 255 characters.
                   example: odvnoazxsgrugbabhxvtekv
-                  nullable: false
     delete:
       summary: Delete a zone
       operationId: deleteAZone
@@ -1111,7 +1085,6 @@ paths:
                   type: string
                   description: ''
                   example: MUSICAL_DECISION
-                  nullable: false
                   enum:
                   - STORE_CLOSED
                   - TECHNICAL_ISSUES
@@ -1275,7 +1248,6 @@ paths:
                   type: boolean
                   description: ''
                   example: false
-                  nullable: false
               required:
               - suspended
   /v2/zones/smart/data:
@@ -1284,9 +1256,9 @@ paths:
       operationId: updateAZoneSmartData
       description: 'It will update the zones provided in the request. It might involve 1 up to 100 zones at a time.
 
-        <aside class="notice">Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid
+        Be aware that if the zones are not accessible to the authenticated user or if any of the zone IDs are not valid
 
-        it will return an error.</aside>'
+        it will return an error.'
       parameters:
       - in: header
         name: x-customer-api-key
@@ -1368,17 +1340,14 @@ paths:
                   type: string
                   description: The key of the integration you're using.
                   example: fudo
-                  nullable: false
                 date:
                   type: string
                   description: The datetime whenever this information is valid from. It must follow the ISO8601
                   example: '2024-08-01T12:00:00Z'
-                  nullable: false
                 data:
                   type: object
                   description: ''
                   example: []
-                  nullable: false
                   properties:
                     zones:
                       type: array
@@ -1391,22 +1360,18 @@ paths:
                             type: integer
                             description: The Brandtrack Zone ID to update.
                             example: 123
-                            nullable: false
                           current_occupation:
                             type: integer
                             description: A number with the occupation from 0 to 100. It is required if capacity and occupation are not provided.
                             example: null
-                            nullable: false
                           current_capacity:
                             type: integer
                             description: It is required with the current_occupied, if provided. It represents the capacity of tables, persons, or whatever the integration measures.
                             example: 150
-                            nullable: false
                           current_occupied:
                             type: integer
                             description: It is required with the current_capacity, if provided. It represents the occupation of tables, persons, or whatever the integration measures.
                             example: 75
-                            nullable: false
                         required:
                         - id
               required:

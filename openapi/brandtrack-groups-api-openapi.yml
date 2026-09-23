@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Brandtrack API Documentation Accounts Groups API
+  title: Brandtrack API Documentation Groups API
   description: This is the official documentation for the Brandtrack API.
   version: 1.0.0
 servers:
@@ -26,7 +26,6 @@ paths:
           type: integer
           description: The page requested. Default to 1.
           example: 1
-          nullable: false
       - in: query
         name: per_page
         description: The number of items per page. Default to 25.
@@ -36,7 +35,6 @@ paths:
           type: integer
           description: The number of items per page. Default to 25.
           example: 100
-          nullable: false
       - in: query
         name: order_by
         description: The field to order the results by. Default to id.
@@ -46,7 +44,6 @@ paths:
           type: string
           description: The field to order the results by. Default to id.
           example: id
-          nullable: false
       - in: query
         name: direction
         description: The direction method to sort results. Default to asc.
@@ -56,7 +53,6 @@ paths:
           type: string
           description: The direction method to sort results. Default to asc.
           example: desc
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -156,20 +152,21 @@ paths:
               type: object
               properties:
                 account_id:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   description: The <code>id</code> of an existing record in the accounts table.
                   example: 5
-                  nullable: true
                 music_profile_id:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   description: The <code>id</code> of an existing record in the music_profiles table.
                   example: 9
-                  nullable: true
                 name:
                   type: string
                   description: ''
                   example: ratione
-                  nullable: false
               required:
               - name
   /v2/groups/{id}:
@@ -195,7 +192,6 @@ paths:
           type: string
           description: 'Any relation to be included, separated by commas. You can use: announcements, mixes, account.'
           example: announcements,mixes
-          nullable: false
       - in: header
         name: x-customer-api-key
         description: ''
@@ -311,20 +307,21 @@ paths:
               type: object
               properties:
                 account_id:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   description: The <code>id</code> of an existing record in the accounts table.
                   example: 5
-                  nullable: true
                 music_profile_id:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   description: The <code>id</code> of an existing record in the music_profiles table.
                   example: 1
-                  nullable: true
                 name:
                   type: string
                   description: ''
                   example: sed
-                  nullable: false
               required:
               - name
     delete:
