@@ -1,0 +1,12 @@
+{
+ "url": "https://developers.brandtrack.ai/openapi.yaml",
+ "requested_url": "https://developers.brandtrack.ai/openapi.yaml",
+ "status": 200,
+ "content_type": "binary/octet-stream",
+ "bytes": 118668,
+ "sha256": "a2c747489f3a2c72fc17ab1c1dad82852bde88ed485f1ab405577fb5fab1df7d",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
