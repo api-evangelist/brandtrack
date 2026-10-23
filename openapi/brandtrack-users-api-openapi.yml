@@ -486,3 +486,9 @@ components:
       name: x-customer-api-key
       in: header
       description: If are not sure about how to get your token feel free to contact our team.
+x-provenance:
+  method: harvested
+  publisher: Brandtrack
+  source: https://developers.brandtrack.ai/openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
