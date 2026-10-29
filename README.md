@@ -64,6 +64,147 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Brandtrack is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Brandtrack is a licensed background-music and in-store audio platform for commercial spaces — retail, hospitality, and food & beverage. It centralizes multi-location music management with smart scheduling, real-time playlist adaptation to signals like foot traffic, weather, and time of day, brand guardrails, AI audio-ad creation, and audit-ready licensing documentation. The Brandtrack v2 REST API manages accounts, subscriptions, users, locations, zones, groups, and roles, authenticated with an x-customer-api-key header, with a partner flow for provisioning customers.
 
-Backed by: 500-global — https://brandtrack.fm
+**Areas:** Company · Music · Background Music · Audio · Streaming · Retail · Hospitality · In-Store Experience · Media · Sound
+
+## Brandtrack on APIs.io
+
+Everything profiled for Brandtrack is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/brandtrack/](https://apis.io/providers/brandtrack/)** — or go straight to one of the APIs or properties below.
+
+### APIs (9)
+
+- [Brandtrack Accounts API](https://apis.io/apis/brandtrack/brandtrack-accounts-api/) — The Accounts API from Brandtrack — 3 operation(s) for accounts.
+- [Brandtrack Groups API](https://apis.io/apis/brandtrack/brandtrack-groups-api/) — The Groups API from Brandtrack — 2 operation(s) for groups.
+- [Brandtrack Locations API](https://apis.io/apis/brandtrack/brandtrack-locations-api/) — The Locations API from Brandtrack — 2 operation(s) for locations.
+- [Brandtrack Other API](https://apis.io/apis/brandtrack/brandtrack-other-api/) — The Other API from Brandtrack — 1 operation(s) for other.
+- [Brandtrack Partner API](https://apis.io/apis/brandtrack/brandtrack-partner-api/) — The Partner API from Brandtrack — 2 operation(s) for partner.
+- [Brandtrack Roles API](https://apis.io/apis/brandtrack/brandtrack-roles-api/) — The Roles API from Brandtrack — 1 operation(s) for roles.
+- [Brandtrack Subscriptions API](https://apis.io/apis/brandtrack/brandtrack-subscriptions-api/) — The Subscriptions API from Brandtrack — 2 operation(s) for subscriptions.
+- [Brandtrack Users API](https://apis.io/apis/brandtrack/brandtrack-users-api/) — The Users API from Brandtrack — 4 operation(s) for users.
+- [Brandtrack Zones API](https://apis.io/apis/brandtrack/brandtrack-zones-api/) — The Zones API from Brandtrack — 3 operation(s) for zones.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [brandtrack](https://apis.io/servers/brandtrack/brandtrack/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Brandtrack Agentic Access](https://apis.io/agentic-access/brandtrack/brandtrack-agentic-access/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Brandtrack API Documentation Accounts API](https://apis.io/collections/brandtrack/open-brandtrack-accounts-api/)
+- [Brandtrack API Documentation Accounts Groups API](https://apis.io/collections/brandtrack/open-brandtrack-groups-api/)
+- [Brandtrack API Documentation Accounts Locations API](https://apis.io/collections/brandtrack/open-brandtrack-locations-api/)
+- [Brandtrack API Documentation Accounts Other API](https://apis.io/collections/brandtrack/open-brandtrack-other-api/)
+- [Brandtrack API Documentation Accounts Partner API](https://apis.io/collections/brandtrack/open-brandtrack-partner-api/)
+- [Brandtrack API Documentation Accounts Roles API](https://apis.io/collections/brandtrack/open-brandtrack-roles-api/)
+- [Brandtrack API Documentation Accounts Subscriptions API](https://apis.io/collections/brandtrack/open-brandtrack-subscriptions-api/)
+- [Brandtrack API Documentation Accounts Users API](https://apis.io/collections/brandtrack/open-brandtrack-users-api/)
+- [Brandtrack API Documentation Accounts Zones API](https://apis.io/collections/brandtrack/open-brandtrack-zones-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Brandtrack Openapi Overlay](https://apis.io/overlays/brandtrack/brandtrack-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Brandtrack Authentication](https://apis.io/security/brandtrack/brandtrack-authentication/)
+- [Brandtrack Domain Security](https://apis.io/security/brandtrack/brandtrack-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Brandtrack Scopes](https://apis.io/scopes/brandtrack/brandtrack-scopes/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [Brandtrack Plans Pricing](https://apis.io/plans/brandtrack/brandtrack-plans-pricing/)
+- [Brandtrack Price Estimates](https://apis.io/plans/brandtrack/brandtrack-price-estimates/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.brandtrack.ai)
+- [Documentation](https://developers.brandtrack.ai/)
+- [API reference](https://developers.brandtrack.ai/)
+- [Pricing](https://www.brandtrack.ai/pricing)
+- [Sign up](https://new.my.brandtrack.ai/register)
+- [Support](https://help.brandtrack.fm/hc/en-us)
+- [Blog](https://www.brandtrack.ai/blog)
+- [Terms of service](https://www.brandtrack.ai/terms-and-conditions)
+- [Privacy policy](https://www.brandtrack.ai/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 46.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 50.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 48.2 |
+| Access clarity | 69.7 |
+
+**Agent readiness 35.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/brandtrack/](https://apis.io/providers/brandtrack/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Brandtrack: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/brandtrack/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
